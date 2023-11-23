@@ -56,13 +56,14 @@ public class Student extends Person {
         return sum/index;
     }
 
-    programme has (year, semester) as key to modules[]
+    /*programme has (year, semester) as key to modules[]
     modules may contain 10 modules
     but student can only pick 5
     so other 5 will be 0 grade
     add up all modules
     take away number of modules with grade N/A from indexOf
     divide sum by index
+    */
 
 
     //viewTranscript
