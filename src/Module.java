@@ -14,7 +14,7 @@ public class Module extends GradingSystem{
     }
 
 
-    public char getStudentGrade(Student student){
+    public char getStudentGrade(int studentId){
 
     }
 
