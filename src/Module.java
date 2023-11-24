@@ -7,7 +7,9 @@ public class Module extends Programme{
     private int credits;
     private ArrayList<Student> studentsInModule;
     private TreeMap<Student, String> studentGrades;
+    private TreeMap<Student, Double> studentResultInPercentage;
     private GradingSystem moduleGradingSystem;
+    
 
     
     //This constructor will make the module have the default grading system for the university
@@ -44,20 +46,23 @@ public class Module extends Programme{
     }
 
     //we give grade as a percentage, the program converts it into a grade
-    public void setStudentGrade(Student student, int grade){
-        studentGrades.put(student,moduleGradingSystem.getGrade(grade));
-    }
-
-    //we give grade as a percentage, the program converts it into a grade
     public void setStudentGrade(Student student, Double grade){
         studentGrades.put(student,moduleGradingSystem.getGrade(grade));
+        studentResultInPercentage.put(student,grade);
     }
 
-    public char getMouduleAvg(){
+    public Double getMouduleAvg(){
         ArrayList<Double> studentResults = new ArrayList<Double>();
-        for(Map.Entry<Student, String> entry : studentGrades.entrySet()){
-
+        for(Map.Entry<Student, Double> entry : studentResultInPercentage.entrySet()){
+            studentResults.add(entry.getValue()); 
         }
+
+        Double total = 0.0;
+        for(int i=0;i<studentResults.size();i++){
+            total=+studentResults.get(i);
+        }
+        return total/studentResults.size();
+        
     }
 
 }
