@@ -23,6 +23,16 @@ this.ProgrammeID = Integer.parseInt(ProgrammeName);
 this.moduleMap = moduleMap;
 
 }
+
+public Programme(Programme programme){
+this.ProgrammeName = programme.ProgrammeName;
+this.ProgrammeLevel = programme.ProgrammeLevel;
+this.Duration = programme.Duration;  
+this.Students = programme.Students;  
+this.ProgrammeID = Integer.parseInt(programme.ProgrammeName);
+this.moduleMap = programme.moduleMap;
+}
+
 public double getAvgQCA(){
     double result=0;
 for(int i=0;i<Students.size();i++){
@@ -63,7 +73,7 @@ public void removeModule(int year, int semester,Module module){
 
 }
 
-public ArrayList<Student> getStudent(){
+public ArrayList<Student> getStudents(){
     return Students;
 }
 
