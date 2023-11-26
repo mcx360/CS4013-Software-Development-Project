@@ -60,7 +60,10 @@ public void removeModule(int year, int semester,Module module){
      modules.remove(module);
      }
     }
+}
 
+public String getProgrammeName() {
+    return this.ProgrammeName;
 }
 
     
