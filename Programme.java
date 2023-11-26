@@ -23,6 +23,10 @@ this.ProgrammeID = Integer.parseInt(ProgrammeName);
 this.moduleMap = moduleMap;
 
 }
+
+public int getProgrammeID(){
+    return  ProgrammeID;
+}
 public double getAvgQCA(){
     double result=0;
 for(int i=0;i<Students.size();i++){
