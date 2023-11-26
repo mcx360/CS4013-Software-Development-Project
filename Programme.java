@@ -66,5 +66,9 @@ public String getProgrammeName() {
     return this.ProgrammeName;
 }
 
+public void addStudentToProgram (Student student) {
+    this.Students.add(student);
+}
+
     
 }
