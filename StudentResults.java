@@ -25,7 +25,7 @@ public class StudentResults implements Results {
        public ArrayList<String> getProgrammeResults(Programme programme){
         ArrayList<String> x = new ArrayList<>();
         ArrayList<Student> y = programme.getStudents();
-        System.out.println("The grades list for the programme "+programme.getName()+" is as follows: ");
+        System.out.println("The grades list for the programme "+programme.getProgrammeName()+" is as follows: ");
         for(int i = 0;i<y.size();i++){
          Student o = y.get(i);
          x.add(getStudentResult(o));
