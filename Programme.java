@@ -23,6 +23,9 @@ this.ProgrammeID = Integer.parseInt(ProgrammeName);
 this.moduleMap = moduleMap;
 
 }
+public ArrayList<Student> getStudents(){
+    return Students;
+}
 
 public int getProgrammeID(){
     return  ProgrammeID;
