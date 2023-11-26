@@ -11,7 +11,7 @@ private String ProgrammeName;
 private int Duration;
 private int ProgrammeLevel;
 private int ProgrammeID;
-private ArrayList<Student> Students;
+private List<Student> Students;
 private Map<Integer,Map<Integer,List <Module>>>moduleMap;
 
 public Programme(String ProgrammeName,int Duration,int ProgrammeLevel,ArrayList<Student> Students,Map<Integer,Map<Integer,List <Module>>> moduleMap){
@@ -23,7 +23,7 @@ this.ProgrammeID = Integer.parseInt(ProgrammeName);
 this.moduleMap = moduleMap;
 
 }
-public ArrayList<Student> getStudents(){
+public List<Student> getStudents(){
     return Students;
 }
 
