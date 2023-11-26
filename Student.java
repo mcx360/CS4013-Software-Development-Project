@@ -63,6 +63,11 @@ public double calculateQCA() {
     return sum / index;
 }
 
+    public List<Module> getModules(){
+    return programme.getModules(this.year, this.semester);
+    }
+
+
     /*programme has (year, semester) as key to modules[]
     modules may contain 10 modules
     but student can only pick 5
@@ -75,3 +80,4 @@ public double calculateQCA() {
 
     //viewTranscript
 }
+    
