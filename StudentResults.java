@@ -24,9 +24,8 @@ public class StudentResults implements Results {
 
        public ArrayList<String> getProgrammeResults(Programme programme){
         ArrayList<String> x = new ArrayList<>();
-        ArrayList<Student> y = new ArrayList<>();
-        y = programme.getStudents();
-        
+        ArrayList<Student> y = programme.getStudents();
+        System.out.println("The grades list for the programme "+programme.getName()+" is as follows: ");
         for(int i = 0;i<y.size();i++){
          Student o = y.get(i);
          x.add(getStudentResult(o));
@@ -37,11 +36,11 @@ public class StudentResults implements Results {
 
         public ArrayList<String> getModuleResults(Module module){
         ArrayList<String> x = new ArrayList<>();
-        ArrayList<Student> y = new ArrayList<>();
-        y = module.getStudents();
+        ArrayList<Student> y = module.getStudents();
+        System.out.println("The grades list for the module "+module.getName()+" is as follows: ");
          for(int i = 0;i<y.size();i++){
          Student o = y.get(i);
-         x.add(getStudentResult(o));
+         x.add(o.getID()+"- Module grade- "+ module.getGrade(o));
         }
         return x;
         }
