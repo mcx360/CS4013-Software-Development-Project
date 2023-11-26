@@ -1,14 +1,15 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class StudentResults implements Results {
     public String getStudentResult(Student student){
         StringBuilder sb = new StringBuilder();
-        ArrayList<Module> modules = student.getModules();
+        List<Module> modules = student.getModules();
         ArrayList<String> Results = new ArrayList<>();
           for(int i=0;i<modules.size();i++){
           Module x = modules.get(i);
-         String result =  x.getStudentGrade(student.getID());
+         String result =  x.getGrade(student);
           Results.add(result);
           }
          for(int k =0;k<Results.size();k++){
@@ -24,7 +25,7 @@ public class StudentResults implements Results {
 
        public ArrayList<String> getProgrammeResults(Programme programme){
         ArrayList<String> x = new ArrayList<>();
-        ArrayList<Student> y = programme.getStudents();
+        List<Student> y = programme.getStudents();
         System.out.println("The grades list for the programme "+programme.getProgrammeName()+" is as follows: ");
         for(int i = 0;i<y.size();i++){
          Student o = y.get(i);
@@ -44,6 +45,3 @@ public class StudentResults implements Results {
         }
         return x;
         }
-
-
-}
