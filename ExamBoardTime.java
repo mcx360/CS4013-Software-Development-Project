@@ -3,7 +3,7 @@ import java.util.StringTokenizer;
 /**
    An appointment time.
 */
-public class AppointmentTime
+public class ExamBoardTime
 { 
    private int hours;
    private int minutes;
@@ -11,7 +11,7 @@ public class AppointmentTime
    /*
      Add additional code here 
        */
-   public AppointmentTime(String timeStr) {
+   public ExamBoardTime(String timeStr) {
       StringTokenizer tokenizer = new StringTokenizer(timeStr, ":");
       this.hours = Integer.parseInt(tokenizer.nextToken());
       this.minutes = Integer.parseInt(tokenizer.nextToken());
