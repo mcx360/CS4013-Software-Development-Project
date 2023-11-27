@@ -3,7 +3,7 @@ import java.util.StringTokenizer;
 /**
    An appointment date.
 */
-public class AppointmentDate
+public class ExamBoardDate
 {  
    private int year;
    private int month;
@@ -12,7 +12,7 @@ public class AppointmentDate
    /*
    Add additional code here
    */
-  public AppointmentDate (String a) {
+  public ExamBoardDate (String a) {
    StringTokenizer tokenizer = new StringTokenizer(a, "/");
    this.day = Integer.parseInt(tokenizer.nextToken());
    this.month = Integer.parseInt(tokenizer.nextToken());
@@ -23,10 +23,10 @@ public class AppointmentDate
     if (other == this) {
         return true;
     }
-    if (!(other instanceof AppointmentDate)) {
+    if (!(other instanceof ExamBoardDate)) {
         return false;
     }
-    AppointmentDate otherDate = (AppointmentDate) other;
+    ExamBoardDate otherDate = (ExamBoardDate) other;
     return this.year == otherDate.year && this.month == otherDate.month && this.day == otherDate.day;
    }
 
