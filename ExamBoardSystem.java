@@ -3,12 +3,12 @@ import java.io.IOException;
 /**
    A system to manage appointments.
 */
-public class AppointmentSystem
+public class ExamBoardSystem
 {  
    public static void main(String[] args)
         throws IOException
    { 
-      AppointmentMenu menu = new AppointmentMenu();
+      ExamBoardMenu menu = new ExamBoardMenu();
       menu.run();
    }
 }
