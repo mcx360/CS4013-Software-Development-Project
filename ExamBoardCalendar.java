@@ -1,31 +1,30 @@
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
    An appointment calendar.
 */
-public class AppointmentCalendar
+public class ExamBoardCalendar
 {  
-   private ArrayList<Appointment> appointments;
+   private ArrayList<ExamBoard> appointments;
 
-   public AppointmentCalendar() {
+   public ExamBoardCalendar() {
    appointments = new ArrayList<>();
    }
    
    /*
       Add additional code here.
    */
-  public void add (Appointment appointment) {
+  public void add (ExamBoard appointment) {
    appointments.add(appointment);
   }
 
-  public void cancel (Appointment appointment) {
+  public void cancel (ExamBoard appointment) {
    appointments.remove(appointment);
   }
 
-  public ArrayList<Appointment> getAppointmentsForDay(AppointmentDate day) {
-   ArrayList<Appointment> appointmentsForDay = new ArrayList<>();
-   for (Appointment appointment : appointments) {
+  public ArrayList<ExamBoard> getAppointmentsForDay(ExamBoardDate day) {
+   ArrayList<ExamBoard> appointmentsForDay = new ArrayList<>();
+   for (ExamBoard appointment : appointments) {
        if (appointment.getDay().equals(day)) {
            appointmentsForDay.add(appointment);
        }
