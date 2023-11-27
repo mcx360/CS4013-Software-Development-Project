@@ -5,14 +5,14 @@ import java.util.ArrayList;
 /**
    A menu for the appointment calendar system.
 */
-public class AppointmentMenu
+public class ExamBoardMenu
 {
    private Scanner in;
 
    /**
       Constructs an AppointmentMenu object.
    */
-   public AppointmentMenu()
+   public ExamBoardMenu()
    {
        in = new Scanner(System.in);
    }
@@ -23,7 +23,7 @@ public class AppointmentMenu
    public void run()
    {         
       boolean more = true;
-      AppointmentCalendar calendar = new AppointmentCalendar();
+      ExamBoardCalendar calendar = new ExamBoardCalendar();
   
       while (more)
       {  
@@ -32,17 +32,17 @@ public class AppointmentMenu
 
          if (command.equals("A"))
          {  
-            System.out.println("Appointment (Description Date From To)");
+            System.out.println("Exam Board (Description Date From To)");
             String line = in.nextLine();
-            Appointment a = new Appointment(line);
+            ExamBoard a = new ExamBoard(line);
             calendar.add(a);
          }
          else if (command.equals("C"))
          { 
-            System.out.println("Enter Appointment Date");
+            System.out.println("Enter Exam Board Date");
             String line = in.nextLine();
-            AppointmentDate day = new AppointmentDate(line);
-            Appointment a = getChoice(calendar.getAppointmentsForDay(day));
+            ExamBoardDate day = new ExamBoardDate(line);
+            ExamBoard a = getChoice(calendar.getAppointmentsForDay(day));
             if (a != null)
                calendar.cancel(a);
          }
@@ -50,8 +50,8 @@ public class AppointmentMenu
          { 
             System.out.println("Date");
             String line = in.nextLine();
-            AppointmentDate day = new AppointmentDate(line);
-            for (Appointment appt : calendar.getAppointmentsForDay(day))
+            ExamBoardDate day = new ExamBoardDate(line);
+            for (ExamBoard appt : calendar.getAppointmentsForDay(day))
                System.out.println(appt.format());
          }
          else if (command.equals("Q"))
@@ -61,13 +61,13 @@ public class AppointmentMenu
       }      
    }
 
-   private Appointment getChoice(ArrayList<Appointment> choices)
+   private ExamBoard getChoice(ArrayList<ExamBoard> choices)
    {
       if (choices.size() == 0) return null;
       while (true)
       {
          char c = 'A';
-         for (Appointment choice : choices)
+         for (ExamBoard choice : choices)
          {
             System.out.println(c + ") " + choice.format()); 
             c++;
