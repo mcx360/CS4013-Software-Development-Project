@@ -3,30 +3,30 @@ import java.util.StringTokenizer;
 /**
    An appointment.
 */
-public class Appointment
+public class ExamBoard
 { 
    private String description;
-   private AppointmentDate day;
-   private AppointmentTime from;
-   private AppointmentTime to;
+   private ExamBoardDate day;
+   private ExamBoardTime from;
+   private ExamBoardTime to;
 
    /*
       Add additional code here
    */
-  public Appointment(String line) {
+  public ExamBoard(String line) {
    StringTokenizer tokenizer = new StringTokenizer(line);
 
    this.description = tokenizer.nextToken();
-   this.day = new AppointmentDate(tokenizer.nextToken());
-   this.from = new AppointmentTime(tokenizer.nextToken());
-   this.to = new AppointmentTime(tokenizer.nextToken());
+   this.day = new ExamBoardDate(tokenizer.nextToken());
+   this.from = new ExamBoardTime(tokenizer.nextToken());
+   this.to = new ExamBoardTime(tokenizer.nextToken());
  }
 
    public String format() {
       return description + " " + day + " " + from + " " + to;
    }
 
-   public AppointmentDate getDay() {
+   public ExamBoardDate getDay() {
       return day;
    }  
 
