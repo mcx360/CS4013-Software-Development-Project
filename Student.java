@@ -43,16 +43,16 @@ public class Student extends Person {
     }
 
     //calculateQca
-public double calculateQCA() {
+public double calculateQCA(Student student) {
     List<Module> modules = programme.getModules(this.year, this.semester);
     int index = modules.size();
     double sum = 0.0;
 
     for (Module module : modules) {
-        if (module.getStudentGrade(this.studentID) == null) {
+        if (module.getStudentGrade(student) == null) {
             index--;
         } else {
-            sum += module.getStudentGrade(this.studentID);
+            sum += module.getStudentGrade(student);
         }
     }
 
@@ -62,11 +62,6 @@ public double calculateQCA() {
 
     return sum / index;
 }
-
-    public List<Module> getModules(){
-    return programme.getModules(this.year, this.semester);
-    }
-
 
     /*programme has (year, semester) as key to modules[]
     modules may contain 10 modules
@@ -80,4 +75,3 @@ public double calculateQCA() {
 
     //viewTranscript
 }
-    
