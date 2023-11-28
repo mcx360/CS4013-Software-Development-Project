@@ -48,6 +48,36 @@ public class Module extends Programme{
         return studentGrades.get(student);
     }
 
+    public double getStudentGradeDouble(String grade){
+        switch(grade){
+            case"A1":
+                return 4.0;
+            case"A2":
+                return 3.6;
+            case"B1":
+                return 3.2;
+            case"B2":
+                return 3.0;
+            case"B3":
+                return 2.8;
+            case"C1":
+                return 2.6;
+            case"C2":
+                return 2.4;
+            case"C3":
+                return 2.0;
+            case"D1":
+                return 1.6;
+            case"D2":
+                return 1.2;
+            case"F":
+                return 0.0;
+            default:
+                return 0.0;
+
+        }
+    }
+
     //we give grade as a percentage, the program converts it into a grade
     public void setStudentGrade(Student student, Double grade){
         studentGrades.put(student,moduleGradingSystem.getGrade(grade));
