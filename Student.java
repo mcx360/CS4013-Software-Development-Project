@@ -5,7 +5,8 @@ public class Student extends Person {
     private Programme programme;
     private int year;
     private int semester;
-    
+    private double thesis;
+
     public Student(String name, String email, Programme programme, int year, int semester) {
         super(name, email);
         this.programme = programme;
@@ -24,6 +25,7 @@ public class Student extends Person {
         }
 
         this.semester = semester;
+        this.thesis = 0.00;
     }
 
     public int getYear () {
@@ -43,7 +45,7 @@ public class Student extends Person {
     }
 
     //calculateQca
-public double calculateQCA(Student student) {
+    public double calculateQCA(Student student) {
     List<Module> modules = programme.getModules(this.year, this.semester);
     int index = modules.size();
     double sum = 0.0;
@@ -53,17 +55,25 @@ public double calculateQCA(Student student) {
             index--;
         } else {
             String grade = module.getStudentGrade(student);
-            double QCAgrade = getStudentGradeDouble(grade);
+            double QCAgrade = module.getStudentGradeDouble(grade);
             sum += QCAgrade;
         }
     }
-
     if (index == 0) {
         return 0.0; // To avoid division by zero if no valid grades are found
     }
+        return sum / index;
+    }
 
-    return sum / index;
-}
+
+
+    public double getThesis() {
+        return this.thesis;
+    }
+
+    public void setThesis(Double result) {
+        this.thesis = result;
+    }
 
     /*programme has (year, semester) as key to modules[]
     modules may contain 10 modules
