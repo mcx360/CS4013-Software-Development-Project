@@ -9,11 +9,9 @@ public class Module{
     private String professor;
     private int credits;
     private ArrayList<Student> studentsInModule;
-    private TreeMap<Student, String> studentGrades;
-    private TreeMap<Student, Double> studentResultInPercentage;
+    private TreeMap<Student, String> studentGrades = new TreeMap<>();
+    //private TreeMap<Student, Double> studentResultInPercentage;
     private GradingSystem moduleGradingSystem;
-    
-    
 
     
     //This constructor will make the module have the default grading system for the university
@@ -24,6 +22,7 @@ public class Module{
         this.studentsInModule = programme.getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
         this.moduleGradingSystem = new GradingSystem();
         this.professor = professor;
+        
     }
 
     //In the event we want to add someone outside the programme to the module, we do it using this method
@@ -82,10 +81,10 @@ public class Module{
     //we give grade as a percentage, the program converts it into a grade
     public void setStudentGrade(Student student, Double grade){
         studentGrades.put(student,moduleGradingSystem.getGrade(grade));
-        studentResultInPercentage.put(student,grade);
+        //studentResultInPercentage.put(student,grade);
     }
 
-    public Double getMouduleAvg(){
+    /*public Double getMouduleAvg(){
         ArrayList<Double> studentResults = new ArrayList<Double>();
         for(Map.Entry<Student, Double> entry : studentResultInPercentage.entrySet()){
             studentResults.add(entry.getValue()); 
@@ -97,6 +96,10 @@ public class Module{
         }
         return total/studentResults.size();
         
+    }
+    */
+    public Double getModuleAvg(){
+        ArrayList<Double> studentResults = new ArrayList<Double>();
     }
 
 }

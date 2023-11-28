@@ -54,7 +54,7 @@ public double calculateQCA(Student student) {
             index--;
         } else {
             String grade = module.getStudentGrade(student);
-            double QCAgrade = getStudentGradeDouble(grade);
+            double QCAgrade = module.getStudentGradeDouble(grade);
             sum += QCAgrade;
         }
     }
