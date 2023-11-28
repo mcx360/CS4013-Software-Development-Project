@@ -30,4 +30,16 @@ public class Faculty {
         facultyEmailList.remove(facultyEmail);
     }
 
+    @Override
+    public String toString(){
+        return facultyName
+    }
+
+    public String facultyEmailToString(){
+        String facultyEmails;
+        for(int i=0;i<facultyEmailList.size();i++){
+            
+        }
+    }
+
 }

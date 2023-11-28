@@ -16,13 +16,14 @@ public class Module extends Programme{
 
     
     //This constructor will make the module have the default grading system for the university
-    public Module(String moduleName,String moduleCode,int credits, Programme programme){
+    public Module(String moduleName,String moduleCode,int credits, Programme programme,String professor){
         super(programme);
         this.moduleName =moduleName;
         this.moduleCode = moduleCode;
         this.credits = credits;
         this.studentsInModule = getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
         this.moduleGradingSystem = new GradingSystem();
+        this.professor = professor;
     }
 
     //In the event we want to add someone outside the programme to the module, we do it using this method
