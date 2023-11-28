@@ -1,9 +1,12 @@
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+
 public class Module extends Programme{
     private String moduleName;
     private String moduleCode;
+    private String professor;
     private int credits;
     private ArrayList<Student> studentsInModule;
     private TreeMap<Student, String> studentGrades;

@@ -1,5 +1,5 @@
 public class GradingSystem {
-    
+    //the default grading system for all modules
     public GradingSystem(){
 
     }

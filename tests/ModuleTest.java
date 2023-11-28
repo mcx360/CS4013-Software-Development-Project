@@ -7,7 +7,7 @@ public class ModuleTest{
     @Before
     public void setup(){
 
-        ArrayList<Student> studentsInProgramme = new ArrayList<>();
+        
         
     }
 

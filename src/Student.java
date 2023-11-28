@@ -1,3 +1,6 @@
+
+import java.util.List;
+
 public class Student extends Person {
     private int studentID;
     private Programme programme;
@@ -18,11 +21,11 @@ public class Student extends Person {
                 throw new IllegalArgumentException("Invalid student ID Format");
             }
         } else {
-                throw new IllegalAccessException("Invalid Email Format");
-            }
+            throw new IllegalArgumentException("Invalid Email Format");
+        }
 
         this.semester = semester;
-        }
+    }
 
     public int getYear () {
         return this.year;
@@ -41,20 +44,27 @@ public class Student extends Person {
     }
 
     //calculateQca
-    public double calculateQca () {
-        Module modules[] = programme.getModules(this.year, this.semester);
-        int index = modules.length;
-        double sum = 0.0;
+public double calculateQCA(Student student) {
+    List<Module> modules = programme.getModules(this.year, this.semester);
+    int index = modules.size();
+    double sum = 0.0;
 
-        for (int i = 0; i < modules.length; i++) {
-            if (modules[i].getStudentGrade(this.studentID) == NULL) {
-                index--;
-            } else {
-                sum += modules[i].getStudentGrade(this.studentID);
-            }
+    for (Module module : modules) {
+        if (module.getStudentGrade(student) == null) {
+            index--;
+        } else {
+            String grade = module.getStudentGrade(student);
+            double QCAgrade = getStudentGradeDouble(grade);
+            sum += QCAgrade;
         }
-        return sum/index;
     }
+
+    if (index == 0) {
+        return 0.0; // To avoid division by zero if no valid grades are found
+    }
+
+    return sum / index;
+}
 
     /*programme has (year, semester) as key to modules[]
     modules may contain 10 modules
@@ -68,7 +78,3 @@ public class Student extends Person {
 
     //viewTranscript
 }
-
-
-
-
