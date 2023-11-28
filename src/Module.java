@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Module extends Programme{
+public class Module{
     private String moduleName;
     private String moduleCode;
     private String professor;
@@ -13,15 +13,15 @@ public class Module extends Programme{
     private TreeMap<Student, Double> studentResultInPercentage;
     private GradingSystem moduleGradingSystem;
     
+    
 
     
     //This constructor will make the module have the default grading system for the university
-    public Module(String moduleName,String moduleCode,int credits, Programme programme,String professor){
-        super(programme);
+    public Module(String moduleName,String moduleCode,int credits,Programme programme,String professor){
         this.moduleName =moduleName;
         this.moduleCode = moduleCode;
         this.credits = credits;
-        this.studentsInModule = getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
+        this.studentsInModule = programme.getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
         this.moduleGradingSystem = new GradingSystem();
         this.professor = professor;
     }

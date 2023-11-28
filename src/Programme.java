@@ -40,7 +40,7 @@ public double getAvgQCA(){
     double result=0;
 for(int i=0;i<Students.size();i++){
     Student x = Students.get(i);
-   result += x.calculateQca();
+   result += x.calculateQCA(x);
 
 }
 return result/Students.size();
