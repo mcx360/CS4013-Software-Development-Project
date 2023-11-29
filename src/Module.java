@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Module{
+    private int moduleMapCode;
     private String moduleName;
     private String moduleCode;
     private String professor;
@@ -18,6 +19,17 @@ public class Module{
     
     //This constructor will make the module have the default grading system for the university
     public Module(String moduleName,String moduleCode,int credits,Programme programme,String professor){
+        this.moduleName =moduleName;
+        this.moduleCode = moduleCode;
+        this.credits = credits;
+        this.studentsInModule = programme.getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
+        this.moduleGradingSystem = new GradingSystem();
+        this.professor = professor;
+        
+    }
+
+    public Module(int moduleMapCode,String moduleName,String moduleCode,int credits,Programme programme,String professor){
+        this.moduleMapCode = moduleMapCode;
         this.moduleName =moduleName;
         this.moduleCode = moduleCode;
         this.credits = credits;
@@ -118,7 +130,7 @@ public class Module{
 
         Double total = 0.0;
         for(int i=0;i<studentResults.size();i++){
-            total=+studentResults.get(i);
+            total+=studentResults.get(i);
         }
         return total/studentResults.size();
         
