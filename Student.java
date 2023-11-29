@@ -6,7 +6,7 @@ public class Student extends Person {
     private int year;
     private int semester;
     private double thesis;
-
+    
     public Student(String name, String email, Programme programme, int year, int semester) {
         super(name, email);
         this.programme = programme;
@@ -44,8 +44,48 @@ public class Student extends Person {
         return this.programme;
     }
 
+    public int getSemester () {
+        return this.semester;
+    }
+
+    public void setSemester (int semester) {
+        this.semester = semester;
+    }
+
+    public void setThesis (double result) {
+        this.thesis = result;
+    }
+
+    public double getThesis () {
+        return this.thesis;
+    }
+
+    public int calculateTotalCredits (Student student) {
+    List<Module> modules = programme.getModules(this.year, this.semester);
+    int totalCredits = 0;
+
+    for (Module module : modules) {
+        if (module.getStudentGrade(student) != null) {
+            totalCredits += module.getCredits();
+            }
+        }
+        return totalCredits;
+    }
+
+    public int calculateTotalStudentCredits (Student student) {
+    List<Module> modules = programme.getModules(this.year, this.semester);
+    int totalCredits = 0;
+
+    for (Module module : modules) {
+        if (module.getStudentGrade(student) != null && module.getStudentGrade(student) != "NG" && module.getStudentGrade(student) != "F") {
+            totalCredits += module.getCredits();
+            }
+        }
+        return totalCredits;
+    }
+
     //calculateQca
-    public double calculateQCA(Student student) {
+    public double calculateQCAForCurrentSemester (Student student) {
     List<Module> modules = programme.getModules(this.year, this.semester);
     int index = modules.size();
     double sum = 0.0;
@@ -59,20 +99,52 @@ public class Student extends Person {
             sum += QCAgrade;
         }
     }
+
+    if (index == 0) {
+        return 0.0; 
+    }
+
+    return sum / index;
+    }
+
+    public double calculateQCAForSemester (Student student, int year, int semester) {
+    List<Module> modules = programme.getModules(year, semester);
+    int index = modules.size();
+    double sum = 0.0;
+
+    for (Module module : modules) {
+        if (module.getStudentGrade(student) == null) {
+            index--;
+        } else {
+            String grade = module.getStudentGrade(student);
+            double QCAgrade = module.getStudentGradeDouble(grade);
+            sum += QCAgrade;
+        }
+    }
+
     if (index == 0) {
         return 0.0; // To avoid division by zero if no valid grades are found
     }
-        return sum / index;
+
+    return sum / index;
     }
 
-
-
-    public double getThesis() {
-        return this.thesis;
+    public double calculateQCAForYear (Student student) {
+        double semester1 = calculateQCAForSemester(student, this.year, 1);
+        double semester2 = calculateQCAForSemester(student, this.year, 2);
+        return (semester1 + semester2)/2;
     }
 
-    public void setThesis(Double result) {
-        this.thesis = result;
+    public double calculateTotalAverageQCA (Student student) {
+        int yearCount = 0;
+        int semesterCount = 0;
+        double QCA = 0.00;
+        while (this.semester != semesterCount && this.year != yearCount) {
+            QCA += calculateQCAForSemester(student, yearCount, semesterCount);
+            yearCount++;
+            semesterCount++;
+        }
+        return QCA;
     }
 
     /*programme has (year, semester) as key to modules[]
@@ -86,4 +158,7 @@ public class Student extends Person {
 
 
     //viewTranscript
+    /*public String viewTranscript() {
+
+    }*/
 }
