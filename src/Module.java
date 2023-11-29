@@ -12,6 +12,8 @@ public class Module{
     private TreeMap<Student, String> studentGrades = new TreeMap<>();
     //private TreeMap<Student, Double> studentResultInPercentage;
     private GradingSystem moduleGradingSystem;
+    private boolean pass;
+    private boolean compensatingFail;
 
     
     //This constructor will make the module have the default grading system for the university
@@ -85,6 +87,26 @@ public class Module{
     //we give grade as a percentage, the program converts it into a grade
     public void setStudentGrade(Student student, Double grade){
         studentGrades.put(student,GradingSystem.getGrade(grade));
+        if(getStudentGrade(student)=="NG"){
+            this.pass=false;
+            this.compensatingFail=false;
+        }
+        else if(getStudentGrade(student)=="F"){
+            this.pass=false;
+            this.compensatingFail=false;
+        }
+        else if(getStudentGrade(student)=="D1"){
+            this.pass = false;
+            this.compensatingFail = true;
+        }
+        else if(getStudentGrade(student)=="D2"){
+            this.pass = false;
+            this.compensatingFail = true;
+        }
+        else{
+            this.pass = true;
+            this.compensatingFail = false;
+        }
         //studentResultInPercentage.put(student,grade);
     }
 
