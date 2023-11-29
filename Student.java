@@ -158,7 +158,47 @@ public class Student extends Person {
 
 
     //viewTranscript
-    /*public String viewTranscript() {
-
-    }*/
+    public String viewTranscript() {
+        StringBuilder transcript = new StringBuilder();
+        transcript.append("Programme: ").append(programme.getProgrammeName())
+                .append("\n")
+                .append("Student Name: ").append(getName())
+                .append("\n");
+    
+        double totalQCA = 0.0; // Variable to store total QCA
+    
+        // Loop through each completed year and semester
+        for (int year = 1; year <= getYear(); year++) {
+            for (int sem = 1; sem <= 2; sem++) {
+                if ((year < getYear()) || (year == getYear() && sem <= getSemester())) {
+                    transcript.append("\n").append("+----------------------+-------------------+\n")
+                            .append("| Year: ").append(year).append("     Semester: ").append(sem).append("       |\n")
+                            .append("+----------------------+-------------------+\n")
+                            .append("| Module               | Grade   |  QCA    |\n");
+    
+                    List<Module> modules = programme.getModules(year, sem);
+                    for (Module module : modules) {
+                        String grade = module.getStudentGrade(this);
+                        if (grade != null) {
+                            double qca = calculateQCAForSemester(this, year, sem);
+                            transcript.append("| - ").append(module.getModuleName()).append(" (").append(module.getModuleCode()).append(")")
+                                    .append("   | ").append(grade).append("      | ").append(String.format("%.2f", qca)).append("  |\n");
+                        }
+                    }
+                    double semesterQCA = calculateQCAForSemester(this, year, sem);
+                    transcript.append("+----------------------+-------------------+\n")
+                            .append("| Semester QCA: ").append(String.format("%.2f", semesterQCA)).append("       |\n")
+                            .append("+----------------------+-------------------+\n");
+    
+                    totalQCA += semesterQCA; // Accumulate total QCA for all semesters
+                }
+            }
+        }
+    
+        // Display the total QCA for all semesters
+        transcript.append("\n").append("Total QCA for all semesters: ").append(String.format("%.2f", totalQCA)).append("\n");
+    
+        return transcript.toString();
+    }
+    
 }
