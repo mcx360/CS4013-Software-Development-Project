@@ -7,6 +7,8 @@ public class Faculty {
 
     public Faculty(String facultyName){
         this.facultyName = facultyName;
+        facultyEmailList = new ArrayList<>();
+        departments = new ArrayList<>();
     }
 
     public Faculty(String facultyName,ArrayList<String> facultyEmailList, ArrayList<Department> departments){
@@ -28,18 +30,6 @@ public class Faculty {
 
     public void deleteFacultyEmail(String facultyEmail){
         facultyEmailList.remove(facultyEmail);
-    }
-
-    @Override
-    public String toString(){
-        return facultyName
-    }
-
-    public String facultyEmailToString(){
-        String facultyEmails;
-        for(int i=0;i<facultyEmailList.size();i++){
-            
-        }
     }
 
 }

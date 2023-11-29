@@ -44,6 +44,10 @@ public class Module{
     }
     }
 
+    public ArrayList<Student> getStudentsInModule(){
+        return studentsInModule;
+    }
+
     public String getStudentGrade(Student student){
         return studentGrades.get(student);
     }
@@ -80,14 +84,14 @@ public class Module{
 
     //we give grade as a percentage, the program converts it into a grade
     public void setStudentGrade(Student student, Double grade){
-        studentGrades.put(student,moduleGradingSystem.getGrade(grade));
+        studentGrades.put(student,GradingSystem.getGrade(grade));
         //studentResultInPercentage.put(student,grade);
     }
 
-    /*public Double getMouduleAvg(){
+    public Double getMouduleAvg(){
         ArrayList<Double> studentResults = new ArrayList<Double>();
-        for(Map.Entry<Student, Double> entry : studentResultInPercentage.entrySet()){
-            studentResults.add(entry.getValue()); 
+        for(Map.Entry<Student, String> entry : studentGrades.entrySet()){
+            studentResults.add(getStudentGradeDouble(entry.getValue())); 
         }
 
         Double total = 0.0;
@@ -97,9 +101,11 @@ public class Module{
         return total/studentResults.size();
         
     }
-    */
-    public Double getModuleAvg(){
-        ArrayList<Double> studentResults = new ArrayList<Double>();
+
+    @Override
+    public String toString(){
+        return moduleName+"\n"+moduleCode+"\n"+"Credits: "+credits+"\n"+"Professor: "+professor;
     }
+    
 
 }

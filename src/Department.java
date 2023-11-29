@@ -7,11 +7,15 @@ public class Department{
 
     public Department(String departmentName){
         this.departmentName = departmentName;
+        departmentProgrammes = new ArrayList<>();
+        departmentFaculty = new ArrayList<>();
     }
     
     public Department(String departmentName,ArrayList<Programme> departmentProgrammes){
         this.departmentName = departmentName;
         this.departmentProgrammes = departmentProgrammes;
+        departmentProgrammes = new ArrayList<>();
+        departmentFaculty = new ArrayList<>();
     }
 
     public Department(String departmentName,ArrayList<Programme> departmentProgrammes,ArrayList<String> departmentFaculty){
@@ -39,5 +43,28 @@ public class Department{
     public void removeFaculty(String name){
         departmentFaculty.remove(name);
     }
+
+    @Override
+    public String toString(){
+        return "Department: "+departmentName +"\n"+departmentProgrammesToString(); 
+    }
+
+    public String departmentProgrammesToString(){
+        String Programmes = "";
+        for(int i=0;i<departmentProgrammes.size();i++){
+            Programmes+=i+1+"."+departmentProgrammes.get(i)+"\n";
+        }
+        return Programmes;
+    }
+
+    public String departmentFacultyToString(){
+        String departmentFacultyMembers = "Department faculty: \n";
+        for(int i=0;i<departmentFaculty.size();i++){
+            departmentFacultyMembers+=departmentFaculty.get(i)+"\n";
+        }
+        return departmentFacultyMembers+"\n";
+    }
+
+    
 
 }

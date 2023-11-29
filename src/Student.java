@@ -1,7 +1,7 @@
 
 import java.util.List;
 
-public class Student extends Person {
+public class Student extends Person implements Comparable<Student>{
     private int studentID;
     private Programme programme;
     private int year;
@@ -65,6 +65,11 @@ public double calculateQCA(Student student) {
 
     return sum / index;
 }
+
+    @Override
+    public int compareTo(Student other){
+        return Integer.compare(this.studentID, other.studentID);
+    }
 
     /*programme has (year, semester) as key to modules[]
     modules may contain 10 modules

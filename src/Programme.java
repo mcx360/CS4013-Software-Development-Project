@@ -34,14 +34,13 @@ public class Programme {
         //this.moduleMap = new HashMap<>(moduleMap);
     }
 
-    public Programme(Programme programme) {
-        this.ProgrammeName = programme.ProgrammeName;
-        this.ProgrammeLevel = programme.ProgrammeLevel;
-        this.Duration = programme.Duration;
-        this.Students = programme.Students;
-        this.ProgrammeID = Integer.parseInt(programme.ProgrammeName);
-        this.moduleMap = new HashMap<>(programme.moduleMap);
-        this.moduleMap = new HashMap<>(moduleMap);
+    public Programme(String ProgrammeName, int Duration, int ProgrammeLevel){
+        this.ProgrammeName = ProgrammeName;
+        this.ProgrammeLevel = ProgrammeLevel;
+        this.Duration = Duration;
+        this.moduleMap = new HashMap<>();
+        this.Students = new ArrayList<>();
+
     }
 
     public double getAvgQCA() {
