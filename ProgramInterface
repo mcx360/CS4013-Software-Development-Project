@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class ProgramInterface {
+    private Scanner scanner;
+
+    public ProgramInterface() {
+        scanner = new Scanner(System.in);
+    }
+
+    public void run() {
+        boolean continueRunning = true;
+
+        while (continueRunning) {
+            System.out.println("Choose an option:");
+            System.out.println("S - (S)tudent");
+            System.out.println("F - (F)aculty");
+            System.out.println("U - (U)pload");
+            System.out.println("R - (R)emove");
+            System.out.println("Q - (Q)uit");
+
+            String choice = scanner.nextLine().toUpperCase();
+
+            switch (choice) {
+                case "S":
+                    studentOptions();
+                    break;
+                case "F":
+                    facultyOptions();
+                    break;
+                case "U":
+                    uploadOptions();
+                    break;
+                case "R":
+                    removeOptions();
+                    break;
+                case "Q":
+                    continueRunning = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose again.");
+                    break;
+            }
+        }
+    }
+
+    private void studentOptions() {
+        System.out.println("Student Options:");
+        System.out.println("1. View Transcript (Own)");
+        System.out.println("2. Get Graduation Status");
+        System.out.println("3. Back");
+
+        String studentChoice = scanner.nextLine();
+
+        switch (studentChoice) {
+            case "1":
+                // View Transcript (Own)
+                // Implement functionality here
+                break;
+            case "2":
+                // Get Graduation Status
+                // Implement functionality here
+                break;
+            case "3":
+                break;
+            default:
+                System.out.println("Invalid option for students.");
+                break;
+        }
+    }
+
+    private void facultyOptions() {
+        // Faculty options implementation
+    }
+
+    private void uploadOptions() {
+        // Upload options implementation
+    }
+
+    private void removeOptions() {
+        // Remove options implementation
+    }
+}
