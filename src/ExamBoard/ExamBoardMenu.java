@@ -24,7 +24,7 @@ public class ExamBoardMenu
    {         
       boolean more = true;
       ExamBoardCalendar calendar = new ExamBoardCalendar();
-  
+   
       while (more)
       {  
          System.out.println("A)dd  C)ancel  S)how  Q)uit");

@@ -93,6 +93,10 @@ public class Programme {
         this.Students.add(student);
     }
 
+    public void removeStudentFromProgram(Student student){
+        this.Students.remove(student);
+    }
+
     public int getProgrammeLevel() {
         return this.ProgrammeLevel;
     }
