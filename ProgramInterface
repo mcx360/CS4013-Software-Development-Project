@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ProgramInterface {
@@ -12,11 +13,11 @@ public class ProgramInterface {
 
         while (continueRunning) {
             System.out.println("Choose an option:");
-            System.out.println("S - (S)tudent");
-            System.out.println("F - (F)aculty");
-            System.out.println("U - (U)pload");
-            System.out.println("R - (R)emove");
-            System.out.println("Q - (Q)uit");
+            System.out.println("(S)tudent");
+            System.out.println("(F)aculty");
+            System.out.println("(U)pload");
+            System.out.println("(R)emove");
+            System.out.println("(Q)uit");
 
             String choice = scanner.nextLine().toUpperCase();
 
@@ -44,6 +45,9 @@ public class ProgramInterface {
     }
 
     private void studentOptions() {
+        System.out.println("Enter Student Id:");
+        int studentId = scanner.nextInt();
+        try{
         System.out.println("Student Options:");
         System.out.println("1. View Transcript (Own)");
         System.out.println("2. Get Graduation Status");
@@ -53,8 +57,7 @@ public class ProgramInterface {
 
         switch (studentChoice) {
             case "1":
-                // View Transcript (Own)
-                // Implement functionality here
+                
                 break;
             case "2":
                 // Get Graduation Status
@@ -66,6 +69,11 @@ public class ProgramInterface {
                 System.out.println("Invalid option for students.");
                 break;
         }
+    }catch(InputMismatchException e ){
+        System.out.println("Invalid format for studentId. Student id must be only in numeric form");
+    }catch(NullPointerException e){
+        System.out.println("This student does not exist, make sure you have typed in the student id correctly");
+    }
     }
 
     private void facultyOptions() {
@@ -140,8 +148,8 @@ public class ProgramInterface {
         System.out.println("3. Add Programme");
         System.out.println("4. Add Student to Programme");
         System.out.println("5. Add Department");
-        System.out.println("6. Add Faculty");
-        System.out.println("7. Back");
+        System.out.println("6. Back");
+        FacultyList facultyList = new FacultyList();
 
         String uploadChoice = scanner.nextLine();
 
@@ -153,24 +161,87 @@ public class ProgramInterface {
             case "2":
                 // Add Module
                 // Implement functionality here
+                System.out.println("Enter module name: ");
+                String moduleName = scanner.nextLine();
+                System.out.println("Enter module code: ");
+                String moduleCode = scanner.nextLine();
+                System.out.println("Enter module credits: ");
+                int moduleCredits = scanner.nextInt();
+                System.out.println("Enter professor name: ");
+                String professorName = scanner.nextLine();
+                System.out.println("Which year is this module taken at: ");
+                int year = scanner.nextInt();
+                System.out.println("Which semester is this module taken at: ");
+                int semester = scanner.nextInt();
+                System.out.println("Which programme does this module belong to: ");
+                String programmeName = scanner.nextLine();
+
+                Programme moduleProgramme = facultyList.programmeList.findProgrammeByName(professorName);
+
+                Module module = new Module(moduleName, moduleCode, moduleCredits, moduleProgramme, professorName, year, semester);
+                moduleProgramme.addModule(year, semester, module);
+
+                System.out.println("Module successfully created");
                 break;
             case "3":
                 // Add Programme
                 // Implement functionality here
+                System.out.println("Enter Programme name: ");
+                String programmeNameToAdd = scanner.nextLine();
+                System.out.println("Enter programme duration: ");
+                int duration = scanner.nextInt();
+                System.out.println("Enter Programme level:");
+                int programmeLevel = scanner.nextInt();
+                
+                System.out.println("Which department does this programme belong to: ");
+                String departmentNameOfProgramme = scanner.nextLine();
+
+                System.out.println("Which faculty does this programme belong to: ");
+                String facultyNameOfProgramme = scanner.nextLine();
+
+                Faculty faculty = facultyList.findFacultyByName(facultyNameOfProgramme);
+
+                Department departmentOfProgramme = faculty.findDepartmentByName(departmentNameOfProgramme);
+                Programme programmeToAdd = new Programme(programmeNameToAdd,duration,programmeLevel, departmentOfProgramme);
+                departmentOfProgramme.addProgramme(programmeToAdd);
+
+                System.out.println("Department successfully created");
                 break;
             case "4":
                 // Add Student to Programme
                 // Implement functionality here
+                System.out.println("Enter student name: ");
+                String studentName = scanner.nextLine();
+                System.out.println("Enter student email: ");
+                String studentEmail = scanner.nextLine();
+                System.out.println("Enter programme student is enrolled in: ");
+                String programmeNameOfStudent = scanner.nextLine();
+                System.out.println("Enter year student is currently in: ");
+                int yearOfStudent = scanner.nextInt();
+                System.out.println("Enter semester student is currently in: ");
+                int semesterOfStudent = scanner.nextInt();    
+
+                Programme programmeOfStudent = facultyList.programmeList.findProgrammeByName(programmeNameOfStudent);
+                Student student = new Student(studentName, studentEmail, programmeOfStudent, yearOfStudent, semesterOfStudent);
+                programmeOfStudent.addStudentToProgram(student);
+
+                System.out.println("Student successfully created");
                 break;
             case "5":
                 // Add Department
                 // Implement functionality here
+                System.out.println("Enter department name: ");
+                String departmentNameToAdd = scanner.nextLine();
+                System.out.println("Which faculty does this department belong to: ");
+                String facultyNameOfDepartmentString = scanner.nextLine();
+
+                Faculty facultyNameOfDepartment = facultyList.findFacultyByName(facultyNameOfDepartmentString);
+                Department departmentToAdd = new Department(departmentNameToAdd, facultyNameOfDepartment);
+                facultyNameOfDepartment.addDepartments(departmentToAdd);
+
+                System.out.println("Department successfully created");
                 break;
             case "6":
-                // Add Faculty
-                // Implement functionality here
-                break;
-            case "7":
                 break;
             default:
                 System.out.println("Invalid option for upload.");
@@ -222,4 +293,5 @@ public class ProgramInterface {
                 break;
         }
     }
+
 }
