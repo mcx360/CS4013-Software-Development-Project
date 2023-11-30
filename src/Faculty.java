@@ -38,4 +38,17 @@ public class Faculty {
         facultyEmailList.remove(facultyEmail);
     }
 
+    public Department findDepartmentByName(String DepartmentName) {
+        for (Department : departments) {
+            if (Department.getDepartmentName().equals(DepartmentName)) {
+                return Department;
+            }
+        }
+        return null;
+    }
+
+    public String getFacultyName(){
+        return this.facultyName;
+    }
+
 }

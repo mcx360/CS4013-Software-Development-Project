@@ -3,23 +3,31 @@ public class Department{
     private String departmentName;
     private ArrayList<Programme> departmentProgrammes;
     private ArrayList<String> departmentFaculty;
+    private Faculty faculty;
 
-    public Department(String departmentName){
+    public Department(String departmentName, Faculty faculty){
         this.departmentName = departmentName;
+        this.faculty=faculty;
         departmentProgrammes = new ArrayList<>();
         departmentFaculty = new ArrayList<>();
     }
     
-    public Department(String departmentName,ArrayList<Programme> departmentProgrammes){
+    public Department(String departmentName,ArrayList<Programme> departmentProgrammes,Faculty faculty){
+        this.faculty = faculty;
         this.departmentName = departmentName;
         this.departmentProgrammes = departmentProgrammes;
         departmentFaculty = new ArrayList<>();
     }
 
-    public Department(String departmentName,ArrayList<Programme> departmentProgrammes,ArrayList<String> departmentFaculty){
+    public Department(String departmentName,ArrayList<Programme> departmentProgrammes,ArrayList<String> departmentFaculty,Faculty faculty){
+        this.faculty = faculty;
         this.departmentName = departmentName;
         this.departmentProgrammes = departmentProgrammes;
         this.departmentFaculty = departmentFaculty;
+    }
+
+    public getDepartmentName(){
+        return this.departmentName;
     }
 
     public void addProgramme(Programme programme){

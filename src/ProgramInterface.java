@@ -57,8 +57,7 @@ public class ProgramInterface {
 
         switch (studentChoice) {
             case "1":
-                // View Transcript (Own)
-                // Implement functionality here
+                
                 break;
             case "2":
                 // Get Graduation Status
