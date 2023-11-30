@@ -71,4 +71,12 @@ public class Department{
         return departmentFacultyMembers+"\n";
     }
 
+    public Programme findProgrammeByName(String programmeName) {
+        for (Programme programme: departmentProgrammes) {
+            if (programme.getProgrammeName().equals(programmeName)) {
+                return programme;
+            }
+        }
+        return null;
+    }
 }

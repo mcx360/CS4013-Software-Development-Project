@@ -29,13 +29,14 @@ public class Module{
         
     }
 
-    public Module(String moduleName,String moduleCode,int credits,Programme programme,String professor){
+    public Module(String moduleName,String moduleCode,int credits,Programme programme,String professor, int year, int semester){
         this.moduleCode = moduleCode;
         this.credits = credits;
         this.studentsInModule = programme.getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
         this.moduleGradingSystem = new GradingSystem();
         this.professor = professor;
-        
+        this.year = year;
+        this.semester = semester;
     }
 
     public static int[] splitInteger(int number) {

@@ -13,7 +13,9 @@ public class Programme {
     private int ProgrammeID;
     private ArrayList<Student> Students;
     private Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap;
+    private Department department;
 
+    /* 
     public Programme(String ProgrammeName, int Duration, int ProgrammeLevel, ArrayList<Student> Students,Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap){
         this.ProgrammeName = ProgrammeName;
         this.ProgrammeLevel = ProgrammeLevel;
@@ -29,8 +31,10 @@ public class Programme {
         this.Students = Students;
         this.moduleMap = new HashMap<>();
     }
+    */
 
-    public Programme(String ProgrammeName, int Duration, int ProgrammeLevel){
+    public Programme(String ProgrammeName, int Duration, int ProgrammeLevel,Department department){
+        this.department = department;
         this.ProgrammeName = ProgrammeName;
         this.ProgrammeLevel = ProgrammeLevel;
         this.Duration = Duration;

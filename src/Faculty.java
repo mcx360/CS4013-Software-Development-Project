@@ -39,9 +39,9 @@ public class Faculty {
     }
 
     public Department findDepartmentByName(String DepartmentName) {
-        for (Department : departments) {
-            if (Department.getDepartmentName().equals(DepartmentName)) {
-                return Department;
+        for (Department department : departments) {
+            if (department.getDepartmentName().equals(DepartmentName)) {
+                return department;
             }
         }
         return null;
