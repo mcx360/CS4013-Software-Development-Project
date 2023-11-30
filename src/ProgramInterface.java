@@ -10,7 +10,7 @@ public class ProgramInterface {
 
     public void run() {
         boolean continueRunning = true;
-        FacultyList facultyList = new facultyList();
+        FacultyList facultyList = new FacultyList();
 
         while (continueRunning) {
             System.out.println("Choose an option:");

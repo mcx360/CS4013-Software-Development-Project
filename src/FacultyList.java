@@ -1,10 +1,11 @@
 import java.util.List;
+import java.util.ArrayList;
 
 class FacultyList{
     private List<Faculty> faculty;
 
     public FacultyList() {
-        faculty = new ArrayList<>();
+        faculty = new ArrayList<Faculty>();
         Faculty arts = new Faculty("Faculty of Arts, Humanities, and Social Sciences");
         Faculty educ = new Faculty("Faculty of Education and Health Science");
         Faculty busi = new Faculty("Kemmy Business School");
