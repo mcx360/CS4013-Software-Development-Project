@@ -49,10 +49,10 @@ public class ModuleCSVReader {
 
     public static void main(String[] args) {
         // Example usage:
-        File moduleFile = new File("src\\modules.csv");
+        
         Programme ComputerScience = new Programme("ComputerScience", 4, 8);
         ModuleCSVReader csvReader = new ModuleCSVReader();
-        ArrayList<Module> modules = csvReader.readModulesFromCSV("src\\modules.csv", ComputerScience);
+        ArrayList<Module> modules = csvReader.readModulesFromCSV("CS4013-Software-Development-Project\\src\\modules.csv", ComputerScience);
         
 
         // Do something with the modules, e.g., print information

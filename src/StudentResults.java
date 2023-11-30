@@ -10,7 +10,7 @@ public class StudentResults implements Results {
         ArrayList<String> Results = new ArrayList<>();
           for(int i=0;i<modules.size();i++){
           Module x = modules.get(i);
-         String result =  x.getGrade(student);
+         String result =  x.getStudentGrade(student);
           Results.add(result);
           }
          for(int k =0;k<Results.size();k++){
@@ -38,11 +38,13 @@ public class StudentResults implements Results {
 
         public ArrayList<String> getModuleResults(Module module){
         ArrayList<String> x = new ArrayList<>();
-        ArrayList<Student> y = module.getStudents();
-        System.out.println("The grades list for the module "+module.getName()+" is as follows: ");
+        ArrayList<Student> y = module.getStudentsInModule();
+        System.out.println("The grades list for the module "+module.getModuleName()+" is as follows: ");
          for(int i = 0;i<y.size();i++){
          Student o = y.get(i);
-         x.add(o.getID()+"- Module grade- "+ module.getGrade(o));
+         x.add(o.getID()+"- Module grade- "+ module.getStudentGrade(o));
         }
         return x;
         }
+      
+      }

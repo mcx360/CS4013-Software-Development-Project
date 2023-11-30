@@ -2,7 +2,6 @@ package ExamBoard;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-
 /**
    A menu for the appointment calendar system.
 */

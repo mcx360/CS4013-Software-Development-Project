@@ -11,6 +11,12 @@ public class Faculty {
         departments = new ArrayList<>();
     }
 
+    public Faculty(String facultyName,ArrayList<Department> departments){
+        this.facultyName = facultyName;
+        this.departments = departments;
+        facultyEmailList = new ArrayList<>();
+    }
+
     public Faculty(String facultyName,ArrayList<String> facultyEmailList, ArrayList<Department> departments){
         this.departments = departments;
         this.facultyEmailList = facultyEmailList;

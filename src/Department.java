@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 public class Department{
     private String departmentName;
@@ -14,7 +13,6 @@ public class Department{
     public Department(String departmentName,ArrayList<Programme> departmentProgrammes){
         this.departmentName = departmentName;
         this.departmentProgrammes = departmentProgrammes;
-        departmentProgrammes = new ArrayList<>();
         departmentFaculty = new ArrayList<>();
     }
 
@@ -46,7 +44,7 @@ public class Department{
 
     @Override
     public String toString(){
-        return "Department: "+departmentName +"\n"+departmentProgrammesToString(); 
+        return "Department: "+departmentName +"\n"+departmentProgrammesToString()+"\n Deparment Programmes: \n"+departmentProgrammesToString()+"\n"+departmentFacultyToString(); 
     }
 
     public String departmentProgrammesToString(){
@@ -64,7 +62,5 @@ public class Department{
         }
         return departmentFacultyMembers+"\n";
     }
-
-    
 
 }

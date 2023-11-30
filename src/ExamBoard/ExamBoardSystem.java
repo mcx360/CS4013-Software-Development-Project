@@ -1,5 +1,4 @@
 package ExamBoard;
-
 import java.io.IOException;
 
 /**

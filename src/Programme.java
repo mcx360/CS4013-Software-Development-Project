@@ -14,13 +14,11 @@ public class Programme {
     private ArrayList<Student> Students;
     private Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap;
 
-    public Programme(String ProgrammeName, int Duration, int ProgrammeLevel, ArrayList<Student> Students,
-            Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap) {
+    public Programme(String ProgrammeName, int Duration, int ProgrammeLevel, ArrayList<Student> Students,Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap){
         this.ProgrammeName = ProgrammeName;
         this.ProgrammeLevel = ProgrammeLevel;
         this.Duration = Duration;
         this.Students = Students;
-        //this.ProgrammeID = Integer.parseInt(ProgrammeName);
         this.moduleMap = new HashMap<>(moduleMap);
     }
 
@@ -30,24 +28,21 @@ public class Programme {
         this.Duration = Duration;
         this.Students = Students;
         this.moduleMap = new HashMap<>();
-        //this.ProgrammeID = Integer.parseInt(ProgrammeName);
-        //this.moduleMap = new HashMap<>(moduleMap);
     }
 
     public Programme(String ProgrammeName, int Duration, int ProgrammeLevel){
         this.ProgrammeName = ProgrammeName;
         this.ProgrammeLevel = ProgrammeLevel;
         this.Duration = Duration;
-        this.moduleMap = new HashMap<>();
         this.Students = new ArrayList<>();
-
+        this.moduleMap = new HashMap<>();
     }
 
     public double getAvgQCA() {
         double result = 0;
         for (int i = 0; i < Students.size(); i++) {
             Student x = Students.get(i);
-            result += x.calculateQCA(x);
+            result += x.calculateTotalAverageQCA(x);
         }
         return result / Students.size();
     }
@@ -86,4 +81,9 @@ public class Programme {
     public void addStudentToProgram(Student student) {
         this.Students.add(student);
     }
+
+    public int getProgrammeLevel() {
+        return this.ProgrammeLevel;
+    }
+    
 }
