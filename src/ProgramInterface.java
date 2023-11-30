@@ -276,7 +276,7 @@ public class ProgramInterface {
                 List<Module> modulesInSem = myProgrammeList.findProgrammeByName(programmeName).getModules(year,sem);
                 for(int i=0;i<modulesInSem.size();i++){
                     if(modulesInSem.get(i).getModuleCode().equals(moduleCode)){
-                        
+                        myProgrammeList.findProgrammeByName(programmeName).removeModule(year, sem, modulesInSem.get(i));
                     }
                 }
                 
