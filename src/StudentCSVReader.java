@@ -15,7 +15,7 @@ public class StudentCSVReader {
         return studentIDMap;
     }
 
-    public void readStudents(String csvFilePath, ProgrammeList programmeList) {
+    public void readStudents(String csvFilePath, Programme.ProgrammeList programmeList) {
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
             String splitSymbol = ",";

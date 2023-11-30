@@ -56,6 +56,17 @@ public class Programme {
         return empty;
     }
 
+    public List<Module> getModules(){
+        List<Module> allModules = new ArrayList<>();
+
+        // Iterate through the values of the moduleMap
+        for (ArrayList<Module> moduleList : moduleMap.values()) {
+            allModules.addAll(moduleList);
+        }
+
+        return allModules;
+    }
+
     public void addModule(int year, int semester, Module module) {
         Map.Entry<Integer, Integer> key = Map.entry(year, semester);
         this.moduleMap.put(key, new ArrayList<>()); 
@@ -84,6 +95,35 @@ public class Programme {
 
     public int getProgrammeLevel() {
         return this.ProgrammeLevel;
+    }
+
+    class ProgrammeList{
+        private List<Programme> programmes;
+
+    public ProgrammeList() {
+        programmes = new ArrayList<>();
+    }
+
+    public void addProgramme(Programme programme) {
+        programmes.add(programme);
+    }
+
+    public void removeProgramme(Programme programme) {
+        programmes.remove(programme);
+    }
+
+    public Programme findProgrammeByName(String programmeName) {
+        for (Programme programme : programmes) {
+            if (programme.getProgrammeName().equals(programmeName)) {
+                return programme;
+            }
+        }
+        return null;
+    }
+
+    public List<Programme> getAllProgrammes() {
+        return programmes;
+    }
     }
     
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 public class StudentResults implements Results {
     public String getStudentResult(Student student){
         StringBuilder sb = new StringBuilder();
-        List<Module> modules = student.getModules();
+        List<Module> modules = student.getProgramme().getModules();
         ArrayList<String> Results = new ArrayList<>();
           for(int i=0;i<modules.size();i++){
           Module x = modules.get(i);
