@@ -68,6 +68,14 @@ public class Module{
         }
     }
 
+    public void removeStudentFromModule(int studentId){
+        for(int i=0;i<studentsInModule.size();i++){
+            if(studentsInModule.get(i).getID()==studentId){
+                studentsInModule.remove(i);
+            }
+        }
+    }
+
     public ArrayList<Student> getStudentsInModule(){
         return studentsInModule;
     }
@@ -160,6 +168,15 @@ public class Module{
 
     public String getModuleCode(){
         return moduleCode;
+    }
+
+    public Student getStudentById(int id){
+        for(int i=0;i<studentsInModule.size();i++){
+            if(studentsInModule.get(i).getID()==id){
+                return studentsInModule.get(i);
+            }
+        }
+        return null;
     }
 
     

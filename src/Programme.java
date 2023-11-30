@@ -51,6 +51,16 @@ public class Programme {
         return result / Students.size();
     }
 
+    public Module getModule(String moduleCode){
+        List<Module> allModules = new ArrayList<>();
+        for(int i=0;i<allModules.size();i++){
+            if(allModules.get(i).getModuleCode().equals(moduleCode)){
+                return allModules.get(i);
+            }
+        }
+        return null;
+    }
+
     public List<Module> getModules(int year, int semester) {
         List<Module> empty = new ArrayList<>();
         Map.Entry<Integer, Integer> key = Map.entry(year, semester);
