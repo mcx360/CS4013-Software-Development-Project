@@ -1,5 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProgramInterface {
     private Scanner scanner;
@@ -48,6 +50,7 @@ public class ProgramInterface {
     private void studentOptions() {
         System.out.println("Enter Student Id:");
         int studentId = scanner.nextInt();
+        
         try{
         System.out.println("Student Options:");
         System.out.println("1. View Transcript (Own)");
@@ -258,6 +261,25 @@ public class ProgramInterface {
             case "1":
                 // Remove Student from Module
                 // Implement functionality here
+                System.out.println("Type the programme name:");
+                String programmeName = scanner.nextLine();
+                System.out.println("Type in year when module takes place in program");
+                int year = scanner.nextInt();
+                System.out.println("Type in semester in which program took place:");
+                int sem = scanner.nextInt();
+                System.out.println("Type the module code:");
+                String moduleCode = scanner.nextLine();
+                System.out.println("Enter student id of student to be removed from the module:");
+                int studentId = scanner.nextInt();
+
+                ProgrammeList myProgrammeList = new ProgrammeList();
+                List<Module> modulesInSem = myProgrammeList.findProgrammeByName(programmeName).getModules(year,sem);
+                for(int i=0;i<modulesInSem.size();i++){
+                    if(modulesInSem.get(i).getModuleCode().equals(moduleCode)){
+                        
+                    }
+                }
+                
                 break;
             case "2":
                 // Remove Module
