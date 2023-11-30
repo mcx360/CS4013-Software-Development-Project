@@ -26,7 +26,7 @@ public class Department{
         this.departmentFaculty = departmentFaculty;
     }
 
-    public getDepartmentName(){
+    public String getDepartmentName(){
         return this.departmentName;
     }
 
