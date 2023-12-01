@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class FacultyList {
-    private static FacultyList instance = null;
     private List<Faculty> faculties;
     protected ProgrammeList programmeList;
 
@@ -22,13 +21,6 @@ class FacultyList {
 
         programmeList = new ProgrammeList();
     }
-
-    public static FacultyList getInstance() {
-        if (instance == null) {
-            instance = new FacultyList();
-        }
-        return instance;
-    }
     
     public List<Faculty> getFaculties() {
         return faculties;
@@ -41,5 +33,9 @@ class FacultyList {
             }
         }
         return null;
+    }
+
+    public void removeFaculty (Faculty faculty){
+        faculties.remove(faculty);
     }
 }
