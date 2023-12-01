@@ -114,6 +114,15 @@ public class Module{
         }
     }
 
+    public Student getStudent(int studentId){
+        for(int i=0;i<studentsInModule.size();i++){
+            if(studentsInModule.get(i).getID()==studentId){
+                return studentsInModule.get(i);
+            }
+        }
+        return null;
+    }
+
     //we give grade as a percentage, the program converts it into a grade
     public void setStudentGrade(Student student, Double grade){
         studentGrades.put(student,GradingSystem.getGrade(grade));
