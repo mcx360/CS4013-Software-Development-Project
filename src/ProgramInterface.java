@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ProgramInterface {
     private Scanner scanner;
 
-    private FacultyList facultyList;
+    private FacultyList facultyList;                          
     public ProgramInterface() {
         scanner = new Scanner(System.in);
     }
@@ -94,8 +94,6 @@ public class ProgramInterface {
 
         switch (facultyChoice) {
             case "1":
-                // Get Student Name
-                // Implement functionality here
                 break;
             case "2":
                 // Set Student Grade
@@ -128,12 +126,6 @@ public class ProgramInterface {
             case "9":
                 // Get Average Programme QCA
                 // Implement functionality here
-                break;
-            case "10":
-                // Exam Board Options
-                // Implement functionality here
-                break;
-            case "11":
                 break;
             default:
                 System.out.println("Invalid option for faculty.");
