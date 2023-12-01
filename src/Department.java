@@ -30,8 +30,13 @@ public class Department{
         return this.departmentName;
     }
 
+    public Faculty getFaculty() {
+        return this.faculty;
+    }
+
     public void addProgramme(Programme programme){
         departmentProgrammes.add(programme);
+        this.faculty.facultyList.programmeList.addProgramme(programme);
     }
 
     public void cancelProgramme(Programme programme){

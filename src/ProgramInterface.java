@@ -1,18 +1,16 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProgramInterface {
     private Scanner scanner;
 
+    private FacultyList facultyList;
     public ProgramInterface() {
         scanner = new Scanner(System.in);
     }
 
     public void run() {
         boolean continueRunning = true;
-        FacultyList facultyList = new FacultyList();
 
         while (continueRunning) {
             System.out.println("Choose an option:");
@@ -50,7 +48,6 @@ public class ProgramInterface {
     private void studentOptions() {
         System.out.println("Enter Student Id:");
         int studentId = scanner.nextInt();
-        
         try{
         System.out.println("Student Options:");
         System.out.println("1. View Transcript (Own)");
@@ -178,10 +175,11 @@ public class ProgramInterface {
                 int semester = scanner.nextInt();
                 System.out.println("Which programme does this module belong to: ");
                 String programmeName = scanner.nextLine();
-                Programme programme = department.findProgrammeByName(programmeName);
 
-                Module module = new Module(departmentName, moduleCode, moduleCredits, programme, professorName, year, semester);
-                programme.addModule(year, semester, module);
+                Programme moduleProgramme = facultyList.programmeList.findProgrammeByName(programmeName);
+
+                Module module = new Module(moduleName, moduleCode, moduleCredits, moduleProgramme, professorName, year, semester);
+                moduleProgramme.addModule(year, semester, module);
 
                 System.out.println("Module successfully created");
                 break;
@@ -189,17 +187,23 @@ public class ProgramInterface {
                 // Add Programme
                 // Implement functionality here
                 System.out.println("Enter Programme name: ");
-                String programmeName = scanner.nextLine();
+                String programmeNameToAdd = scanner.nextLine();
                 System.out.println("Enter programme duration: ");
                 int duration = scanner.nextInt();
                 System.out.println("Enter Programme level:");
                 int programmeLevel = scanner.nextInt();
                 
                 System.out.println("Which department does this programme belong to: ");
-                String departmentName = scanner.nextLine();
-                Department department = Faculty.findDepartmentByName(departmentName);
-                Programme programme = new Programme(programmeNameName,duration,programmeLevel, department);
-                department.addProgramme(programme);
+                String departmentNameOfProgramme = scanner.nextLine();
+
+                System.out.println("Which faculty does this programme belong to: ");
+                String facultyNameOfProgramme = scanner.nextLine();
+
+                Faculty faculty = facultyList.findFacultyByName(facultyNameOfProgramme);
+
+                Department departmentOfProgramme = faculty.findDepartmentByName(departmentNameOfProgramme);
+                Programme programmeToAdd = new Programme(programmeNameToAdd,duration,programmeLevel, departmentOfProgramme);
+                departmentOfProgramme.addProgramme(programmeToAdd);
 
                 System.out.println("Department successfully created");
                 break;
@@ -211,29 +215,29 @@ public class ProgramInterface {
                 System.out.println("Enter student email: ");
                 String studentEmail = scanner.nextLine();
                 System.out.println("Enter programme student is enrolled in: ");
-                String programmeName = scanner.nextLine();
+                String programmeNameOfStudent = scanner.nextLine();
                 System.out.println("Enter year student is currently in: ");
-                int year = scanner.nextInt();
+                int yearOfStudent = scanner.nextInt();
                 System.out.println("Enter semester student is currently in: ");
-                int semester = scanner.nextInt();    
-                          
-                Programme programme = Department.findProgrammeByName(programmeName);
-                Student student = new Student(studentName, studentEmail, programme, year, semester);
-                Programme.addStudentToProgram(student);
+                int semesterOfStudent = scanner.nextInt();    
+
+                Programme programmeOfStudent = facultyList.programmeList.findProgrammeByName(programmeNameOfStudent);
+                Student student = new Student(studentName, studentEmail, programmeOfStudent, yearOfStudent, semesterOfStudent);
+                programmeOfStudent.addStudentToProgram(student);
 
                 System.out.println("Student successfully created");
-                break;
                 break;
             case "5":
                 // Add Department
                 // Implement functionality here
                 System.out.println("Enter department name: ");
-                String departmentName = scanner.nextLine();
+                String departmentNameToAdd = scanner.nextLine();
                 System.out.println("Which faculty does this department belong to: ");
-                String facultyName = scanner.nextLine();
-                Faculty faculty = FacultyList.findFacultyByName(facultyName);
-                Department department = new Department(departmentName, faculty);
-                Faculty.addDepartments(department);
+                String facultyNameOfDepartmentString = scanner.nextLine();
+
+                Faculty facultyNameOfDepartment = facultyList.findFacultyByName(facultyNameOfDepartmentString);
+                Department departmentToAdd = new Department(departmentNameToAdd, facultyNameOfDepartment);
+                facultyNameOfDepartment.addDepartments(departmentToAdd);
 
                 System.out.println("Department successfully created");
                 break;
@@ -261,26 +265,6 @@ public class ProgramInterface {
             case "1":
                 // Remove Student from Module
                 // Implement functionality here
-                System.out.println("Type the programme name:");
-                String programmeName = scanner.nextLine();
-                System.out.println("Type in year when module takes place in program");
-                int year = scanner.nextInt();
-                System.out.println("Type in semester in which program took place:");
-                int sem = scanner.nextInt();
-                System.out.println("Type the module code:");
-                String moduleCode = scanner.nextLine();
-                System.out.println("Enter student id of student to be removed from the module:");
-                int studentId = scanner.nextInt();
-
-                ProgrammeList myProgrammeList = new ProgrammeList();
-                List<Module> modulesInSem = myProgrammeList.findProgrammeByName(programmeName).getModules(year,sem);
-                for(int i=0;i<modulesInSem.size();i++){
-                    if(modulesInSem.get(i).getModuleCode().equals(moduleCode)){
-                        //myProgrammeList.findProgrammeByName(programmeName).getModule(myProgrammeList.findProgrammeByName(programmeName).getModules(year,sem),moduleCode).removeStudentFromModule();
-                        myProgrammeList.findProgrammeByName(programmeName).getModule(moduleCode).removeStudentFromModule(studentId);
-                    } 
-                }
-                
                 break;
             case "2":
                 // Remove Module

@@ -4,29 +4,20 @@ public class Faculty {
     private String facultyName;
     private ArrayList<String> facultyEmailList;
     private ArrayList<Department> departments;
+    protected FacultyList facultyList; // Reference to FacultyList
 
-    public Faculty(String facultyName){
+    public Faculty(String facultyName) {
         this.facultyName = facultyName;
-        facultyEmailList = new ArrayList<>();
-        departments = new ArrayList<>();
+        this.facultyEmailList = new ArrayList<>();
+        this.departments = new ArrayList<>();
+        this.facultyList = FacultyList.getInstance();
     }
 
-    public Faculty(String facultyName,ArrayList<Department> departments){
-        this.facultyName = facultyName;
-        this.departments = departments;
-        facultyEmailList = new ArrayList<>();
-    }
-
-    public Faculty(String facultyName,ArrayList<String> facultyEmailList, ArrayList<Department> departments){
-        this.departments = departments;
-        this.facultyEmailList = facultyEmailList;
-    }
-
-    public void addDepartments(Department department){
+    public void addDepartments(Department department) {
         departments.add(department);
     }
 
-    public void deleteDepartment(Department department){
+    public void deleteDepartment(Department department) {
         departments.remove(department);
     }
 
@@ -47,8 +38,7 @@ public class Faculty {
         return null;
     }
 
-    public String getFacultyName(){
+    public String getFacultyName() {
         return this.facultyName;
     }
-
 }
