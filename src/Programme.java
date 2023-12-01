@@ -143,14 +143,14 @@ public class Programme {
         return programmes;
     }
 
-    public Student findStudentByName(String studentName){
+    }
+        public Student findStudentByName(String studentName){
         for(Student student: Students){
             if(student.getName().equals(studentName)){
                 return student;
             }
         }
         return null;
-    }
     }
     
 }

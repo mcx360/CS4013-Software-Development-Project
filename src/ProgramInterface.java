@@ -311,7 +311,15 @@ public class ProgramInterface {
             System.out.println("Enter the programme from which this student should be removed: ");
             String newProgrammeName = scanner.nextLine();
             ProgrammeList listOfTheprogrammes = new ProgrammeList();
-            Student studentToBeRemoved = listOfTheprogrammes.findProgrammeByName(newProgrammeName).findStudentByName(studentName);
+
+FacultyList facultyList = FacultyList.getInstance(); // assuming you have this instance in your class
+
+ProgrammeList listOfProgrammes = facultyList.programmeList;
+Programme programOfStudent = listOfProgrammes.findProgrammeByName(newProgrammeName);
+
+// Check if the program is found before attempting to find the student
+    Student studentToBeRemoved = programOfStudent.findStudentByName(studentName);
+
             listOfTheprogrammes.findProgrammeByName(newProgrammeName).removeStudentFromProgram(studentToBeRemoved);
             
 
