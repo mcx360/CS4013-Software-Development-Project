@@ -79,16 +79,16 @@ public class ProgramInterface {
     }
 
     private void facultyOptions() {
-        System.out.println("1.Faculty Options:");
-        System.out.println("2. Set Student Grade");
-        System.out.println("3. View Students in Module");
-        System.out.println("4. Progress Student");
-        System.out.println("5. View Transcript");
-        System.out.println("6. Get Module Average");
-        System.out.println("7. View All Department Programmes");
-        System.out.println("8. Get Average Programme QCA");
-        System.out.println("9. Exam Board Options");
-        System.out.println("10. Back");
+        System.out.println("Faculty Options:");
+        System.out.println("1. Set Student Grade");
+        System.out.println("2. View Students in Module");
+        System.out.println("3. Progress Student");
+        System.out.println("4. View Transcript");
+        System.out.println("5. Get Module Average");
+        System.out.println("6. View All Department Programmes");
+        System.out.println("7. Get Average Programme QCA");
+        System.out.println("8. Exam Board Options");
+        System.out.println("9. Back");
 
         String facultyChoice = scanner.nextLine();
 
