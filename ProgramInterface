@@ -168,12 +168,21 @@ public class ProgramInterface {
                 String moduleCode = scanner.nextLine();
                 System.out.println("Enter module credits: ");
                 int moduleCredits = scanner.nextInt();
+                
+                scanner.nextLine();
+                
                 System.out.println("Enter professor name: ");
                 String professorName = scanner.nextLine();
                 System.out.println("Which year is this module taken at: ");
                 int year = scanner.nextInt();
+                
+                scanner.nextLine();
+                
                 System.out.println("Which semester is this module taken at: ");
                 int semester = scanner.nextInt();
+                
+                scanner.nextLine();
+                
                 System.out.println("Which programme does this module belong to: ");
                 String programmeName = scanner.nextLine();
 
@@ -221,8 +230,10 @@ public class ProgramInterface {
                 String programmeNameOfStudent = scanner.nextLine();
                 System.out.println("Enter year student is currently in: ");
                 int yearOfStudent = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter semester student is currently in: ");
                 int semesterOfStudent = scanner.nextInt();    
+                scanner.nextLine();
 
                 Programme programmeOfStudent = facultyList.programmeList.findProgrammeByName(programmeNameOfStudent);
                 Student student = new Student(studentName, studentEmail, programmeOfStudent, yearOfStudent, semesterOfStudent);
@@ -313,9 +324,7 @@ public class ProgramInterface {
             System.out.println("Enter the programme from which this student should be removed: ");
             String newProgrammeName = scanner.nextLine();
             ProgrammeList listOfTheprogrammes = new ProgrammeList();
-
-//FacultyList facultyList = FacultyList.getInstance(); // assuming you have this instance in your class
-
+            
 ProgrammeList listOfProgrammes = facultyList.programmeList;
 Programme programOfStudent = listOfProgrammes.findProgrammeByName(newProgrammeName);
 
