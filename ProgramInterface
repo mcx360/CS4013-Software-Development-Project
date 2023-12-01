@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class ProgramInterface {
     private Scanner scanner;
@@ -145,12 +146,13 @@ public class ProgramInterface {
 
     private void uploadOptions() {
         System.out.println("Upload Options:");
-        System.out.println("1. Add Student to Module");
+        System.out.println("1. Add Students to Programme (CSV)");
         System.out.println("2. Add Module");
         System.out.println("3. Add Programme");
         System.out.println("4. Add Student to Programme");
         System.out.println("5. Add Department");
         System.out.println("6. Back");
+        System.out.println("7. Add Modules (CSV)");
 
         String uploadChoice = scanner.nextLine();
 
@@ -158,6 +160,13 @@ public class ProgramInterface {
             case "1":
                 // Add Student to Module
                 // Implement functionality here
+                System.out.println("Enter CSV file path:");
+                String csvFilePath = scanner.nextLine();
+
+                StudentCSVReader csvReader = new StudentCSVReader();
+                csvReader.readStudents(csvFilePath, facultyList.programmeList);
+
+                System.out.println("Students added from CSV successfully.");
                 break;
             case "2":
                 // Add Module
@@ -256,6 +265,30 @@ public class ProgramInterface {
                 System.out.println("Department successfully created");
                 break;
             case "6":
+                break;
+            case "7":
+                // Add Modules (CSV)
+                // Implement functionality here
+                System.out.println("Enter CSV file path for modules:");
+                String moduleCSVFilePath = scanner.nextLine();
+
+                System.out.println("Enter the programme name for these modules:");
+                String programmeNameForModules = scanner.nextLine();
+
+                Programme programmeForModules = facultyList.programmeList.findProgrammeByName(programmeNameForModules);
+
+                ModuleCSVReader moduleCSVReader = new ModuleCSVReader();
+                ArrayList<Module> modulesToAdd = moduleCSVReader.readModulesFromCSV(moduleCSVFilePath, programmeForModules);
+
+                // Adding modules to the programme
+                if (modulesToAdd != null && !modulesToAdd.isEmpty()) {
+                    for (Module CSVmodule : modulesToAdd) {
+                        programmeForModules.addModule(CSVmodule.getYear(), CSVmodule.getSemester(), CSVmodule);
+                    }
+                    System.out.println("Modules added from CSV successfully.");
+                } else {
+                    System.out.println("No modules were added. Please check the CSV file.");
+                }
                 break;
             default:
                 System.out.println("Invalid option for upload.");
