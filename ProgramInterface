@@ -1,9 +1,11 @@
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProgramInterface {
     private Scanner scanner;
 
+    private FacultyList facultyList = new FacultyList();
     public ProgramInterface() {
         scanner = new Scanner(System.in);
     }
@@ -149,7 +151,6 @@ public class ProgramInterface {
         System.out.println("4. Add Student to Programme");
         System.out.println("5. Add Department");
         System.out.println("6. Back");
-        FacultyList facultyList = new FacultyList();
 
         String uploadChoice = scanner.nextLine();
 
@@ -176,7 +177,7 @@ public class ProgramInterface {
                 System.out.println("Which programme does this module belong to: ");
                 String programmeName = scanner.nextLine();
 
-                Programme moduleProgramme = facultyList.programmeList.findProgrammeByName(professorName);
+                Programme moduleProgramme = facultyList.programmeList.findProgrammeByName(programmeName);
 
                 Module module = new Module(moduleName, moduleCode, moduleCredits, moduleProgramme, professorName, year, semester);
                 moduleProgramme.addModule(year, semester, module);
@@ -190,8 +191,10 @@ public class ProgramInterface {
                 String programmeNameToAdd = scanner.nextLine();
                 System.out.println("Enter programme duration: ");
                 int duration = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter Programme level:");
                 int programmeLevel = scanner.nextInt();
+                scanner.nextLine();
                 
                 System.out.println("Which department does this programme belong to: ");
                 String departmentNameOfProgramme = scanner.nextLine();
@@ -235,9 +238,9 @@ public class ProgramInterface {
                 System.out.println("Which faculty does this department belong to: ");
                 String facultyNameOfDepartmentString = scanner.nextLine();
 
-                Faculty facultyNameOfDepartment = facultyList.findFacultyByName(facultyNameOfDepartmentString);
-                Department departmentToAdd = new Department(departmentNameToAdd, facultyNameOfDepartment);
-                facultyNameOfDepartment.addDepartments(departmentToAdd);
+                Faculty facultyOfDepartment = facultyList.findFacultyByName(facultyNameOfDepartmentString);
+                Department departmentToAdd = new Department(departmentNameToAdd, facultyOfDepartment);
+                facultyOfDepartment.addDepartments(departmentToAdd);
 
                 System.out.println("Department successfully created");
                 break;
@@ -263,26 +266,101 @@ public class ProgramInterface {
 
         switch (removeChoice) {
             case "1":
-                // Remove Student from Module
+                   // Remove Student from Module
                 // Implement functionality here
+                System.out.println("Type the programme name:");
+                String programmeName = scanner.nextLine();
+                System.out.println("Type in year when module takes place in program");
+                int year = scanner.nextInt();
+                System.out.println("Type in semester in which program took place:");
+                int sem = scanner.nextInt();
+                System.out.println("Type the module code:");
+                String moduleCode = scanner.nextLine();
+                System.out.println("Enter student id of student to be removed from the module:");
+                int studentId = scanner.nextInt();
+                ProgrammeList myProgrammeList = new ProgrammeList();
+                List<Module> modulesInSem = myProgrammeList.findProgrammeByName(programmeName).getModules(year,sem);
+                for(int i=0;i<modulesInSem.size();i++){
+                    if(modulesInSem.get(i).getModuleCode().equals(moduleCode)){
+
+                        myProgrammeList.findProgrammeByName(programmeName).removeModule(year, sem, modulesInSem.get(i));
+                    }
+                }
                 break;
             case "2":
+            System.out.println("Enter the programme in which this module is in: ");
+            String nameOfprogramme = scanner.nextLine();
+            System.out.println("Enter the year when module takes place in the programme: ");
+            int yearOfmodule = scanner.nextInt();
+            System.out.println("Enter the semester in which the module takes place: ");
+            int semesterOfmodule =  scanner.nextInt();
+            System.out.println("Enter the module code: ");
+            String codeOfmodule  = scanner.nextLine();
+
+            ProgrammeList newprogrammeList = new ProgrammeList();
+            List<Module> modulesinSEMESTER = newprogrammeList.findProgrammeByName(nameOfprogramme).getModules(yearOfmodule,semesterOfmodule);
+
+            for(int s=0;s<modulesinSEMESTER.size();s++){
+                if(modulesinSEMESTER.get(s).getModuleCode().equals(codeOfmodule));
+                newprogrammeList.findProgrammeByName(nameOfprogramme).removeModule(yearOfmodule, semesterOfmodule,modulesinSEMESTER.get(s) );
+            }
                 // Remove Module
                 // Implement functionality here
                 break;
             case "3":
-                // Remove Student from Programme
-                // Implement functionality here
+            System.out.println("Enter student's name to be removed: ");
+            String studentName = scanner.nextLine();
+            System.out.println("Enter the programme from which this student should be removed: ");
+            String newProgrammeName = scanner.nextLine();
+            ProgrammeList listOfTheprogrammes = new ProgrammeList();
+
+//FacultyList facultyList = FacultyList.getInstance(); // assuming you have this instance in your class
+
+ProgrammeList listOfProgrammes = facultyList.programmeList;
+Programme programOfStudent = listOfProgrammes.findProgrammeByName(newProgrammeName);
+
+// Check if the program is found before attempting to find the student
+    Student studentToBeRemoved = programOfStudent.findStudentByName(studentName);
+
+            listOfTheprogrammes.findProgrammeByName(newProgrammeName).removeStudentFromProgram(studentToBeRemoved);
+            
+
+
+               // Remove Student from Programme
+               // Implement functionality here
                 break;
             case "4":
+            System.out.println("Enter programme name: ");
+            String programmeToBeRemoved = scanner.nextLine();
+            ProgrammeList listOfprogrammes = new ProgrammeList();
+            Programme removalProgram = listOfprogrammes.findProgrammeByName(programmeToBeRemoved);
+            listOfprogrammes.removeProgramme(removalProgram);
                 // Remove Programme
                 // Implement functionality here
                 break;
             case "5":
+            System.out.println("Enter name of the faculty in which this department comes under: ");
+            String facultyName = scanner.nextLine();
+            System.out.println("Enter the name of department to be removed: ");
+            String nameOfDepartment = scanner.nextLine();
+            FacultyList listOffaculties = new FacultyList();
+            Faculty nameOffaculty = listOffaculties.findFacultyByName(facultyName);
+            Department department = nameOffaculty.findDepartmentByName(nameOfDepartment) ;
+            nameOffaculty.deleteDepartment(department);
+
+
+            
+
                 // Remove Department
                 // Implement functionality here
                 break;
             case "6":
+            System.out.println("Enter name of the faculty to be removed: ");
+            String NameOfFaculty = scanner.nextLine();
+            FacultyList newListOfFaculties = new FacultyList();
+            Faculty facultyTobeRemoved = newListOfFaculties.findFacultyByName(NameOfFaculty);
+            newListOfFaculties.removeFaculty(facultyTobeRemoved);
+
                 // Remove Faculty
                 // Implement functionality here
                 break;
