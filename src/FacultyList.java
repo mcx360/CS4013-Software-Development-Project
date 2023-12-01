@@ -42,4 +42,8 @@ class FacultyList {
         }
         return null;
     }
+
+    public void removeFaculty (Faculty faculty){
+        faculties.remove(faculty);
+    }
 }
