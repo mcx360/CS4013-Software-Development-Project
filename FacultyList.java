@@ -7,11 +7,11 @@ class FacultyList {
 
     public FacultyList() {
         faculties = new ArrayList<>();
-        Faculty arts = new Faculty("Faculty of Arts, Humanities, and Social Sciences");
-        Faculty educ = new Faculty("Faculty of Education and Health Science");
-        Faculty busi = new Faculty("Kemmy Business School");
-        Faculty scie = new Faculty("Faculty of Science And Engineering");
-        Faculty worl = new Faculty("Irish World Academy of Music & Dance");
+        Faculty arts = new Faculty("Faculty of Arts, Humanities, and Social Sciences", this);
+        Faculty educ = new Faculty("Faculty of Education and Health Science", this);
+        Faculty busi = new Faculty("Kemmy Business School", this);
+        Faculty scie = new Faculty("Faculty of Science And Engineering", this);
+        Faculty worl = new Faculty("Irish World Academy of Music & Dance", this);
         
         faculties.add(arts);
         faculties.add(educ);
