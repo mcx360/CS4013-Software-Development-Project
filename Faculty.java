@@ -6,11 +6,11 @@ public class Faculty {
     private ArrayList<Department> departments;
     protected FacultyList facultyList; // Reference to FacultyList
 
-    public Faculty(String facultyName) {
+    public Faculty(String facultyName, FacultyList facultyList) {
         this.facultyName = facultyName;
         this.facultyEmailList = new ArrayList<>();
         this.departments = new ArrayList<>();
-      //  this.facultyList = FacultyList.getInstance();
+        this.facultyList = facultyList;
     }
 
     public void addDepartments(Department department) {
