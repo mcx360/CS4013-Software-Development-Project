@@ -59,9 +59,25 @@ public class ProgramInterface {
 
         switch (studentChoice) {
             case "1":
-                
+              System.out.println("Enter the Student Name: ");
+              String studentName = scanner.nextLine();
+              System.out.println("Enter the student's programme: ");
+              String programmename = scanner.nextLine();
+              ProgrammeList programmelist = new ProgrammeList();
+             Student student =  programmelist.findProgrammeByName(programmename).findStudentByName(studentName);
+             student.viewTranscript();
+                //View transcript (own)
                 break;
             case "2":
+            System.out.println("Enter The student name :");
+            String newstudentname = scanner.nextLine();
+            System.out.println("Enter the student's programme: ");
+            String programme = scanner.nextLine();
+            ProgrammeList newprogrammelist = new ProgrammeList();
+            Student studenttoGet = newprogrammelist.findProgrammeByName(programme).findStudentByName(newstudentname);
+            Progression progressionstatus = new Progression(studenttoGet);
+            progressionstatus.getGraduationStatus();
+
                 // Get Graduation Status
                 // Implement functionality here
                 break;
@@ -108,15 +124,48 @@ public class ProgramInterface {
                 // Implement functionality here
                 break;
             case "5":
-                // Get Graduation Status
+          Module moduleToGet;
+            System.out.println("Enter the module for which you need the average for: ");
+            String moduleNameToGet = scanner.nextLine();
+            System.out.println("Enter the programme which this module comes under: ");
+            String programmeNameToGet = scanner.nextLine();
+            System.out.println("Enter the year in which this module taught: ");
+            int yearToGet = scanner.nextInt();
+            System.out.println("Enter the semester in which this module is taught: ");
+            int semToGet = scanner.nextInt();
+            ProgrammeList programmeListToGet = new ProgrammeList();
+            Programme programmeToGet = programmeListToGet.findProgrammeByName(programmeNameToGet);
+            for(int b=0;b<programmeToGet.getModules(yearToGet,semToGet).size();b++){
+                if (programmeToGet.getModules(yearToGet,semToGet).get(b).getModuleName().equals(moduleNameToGet)){
+                    moduleToGet = programmeToGet.getModules(yearToGet,semToGet).get(b);
+                    moduleToGet.getMouduleAvg();
+                }
+            }
+
+
+
+
+                // Get Module Average
                 // Implement functionality here
                 break;
             case "6":
-                // View Transcript
+                System.out.println("Enter the department name: ");
+                String departmentName = scanner.nextLine();
+                System.out.println("Enter the faculty it comes under: ");
+                String facultyName = scanner.nextLine();
+                FacultyList listOfFaculty = new FacultyList();
+                Department departmentToGet = listOfFaculty.findFacultyByName(facultyName).findDepartmentByName(departmentName);
+                departmentToGet.departmentProgrammesToString();
+                // View All Department Programmes
                 // Implement functionality here
                 break;
             case "7":
-                // Get Module Average
+               System.out.println("Enter the Programme name: ");
+               String nameOfTheProgramme = scanner.nextLine();
+               ProgrammeList listOfTheProgrammes = new ProgrammeList();
+               Programme programme = listOfTheProgrammes.findProgrammeByName(nameOfTheProgramme);
+               programme.getAvgQCA();
+                // Get Average Programme QCA
                 // Implement functionality here
                 break;
             case "8":
