@@ -10,7 +10,7 @@ public class Faculty {
         this.facultyName = facultyName;
         this.facultyEmailList = new ArrayList<>();
         this.departments = new ArrayList<>();
-        this.facultyList = FacultyList.getInstance();
+      //  this.facultyList = FacultyList.getInstance();
     }
 
     public void addDepartments(Department department) {
