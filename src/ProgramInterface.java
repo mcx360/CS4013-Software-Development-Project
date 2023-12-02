@@ -2,12 +2,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import ExamBoard.ExamBoardMenu;
 
 public class ProgramInterface {
     private Scanner scanner;
     ProgrammeList listOfProgrammes = new ProgrammeList();
-
-    private FacultyList facultyList = new FacultyList();                          
+    private FacultyList facultyList = new FacultyList(); 
+                             
     public ProgramInterface() {
         scanner = new Scanner(System.in);
     }
@@ -152,8 +153,16 @@ public class ProgramInterface {
                 System.out.println("graduated:" +graduated);
                 break;
             case "4":
-                // Progress Student
-                // Implement functionality here
+                System.out.println("Enter id of student which you want to see the transcript off:");
+                int idOfStudent = scanner.nextInt();
+                System.out.println("Enter the programme in which the student is enrolled in:");
+                String PROGRAMME = scanner.nextLine();
+                ArrayList<Student> listOfStudents = listOfProgrammes.findProgrammeByName(PROGRAMME).getStudents();
+                for(int i=0;i<listOfStudents.size();i++){
+                    if(listOfStudents.get(i).getID()==idOfStudent){
+                        System.out.println(listOfStudents.get(i).viewTranscript());
+                    }
+                }
                 break;
             case "5":
             Module moduleToGet;
@@ -185,19 +194,17 @@ public class ProgramInterface {
             // View All Department Programmes
             // Implement functionality here
             break;
-                break;
             case "7":
             System.out.println("Enter the Programme name: ");
             String nameOfTheProgramme = scanner.nextLine();
             ProgrammeList listOfTheProgrammes = new ProgrammeList();
             Programme programme = listOfTheProgrammes.findProgrammeByName(nameOfTheProgramme);
             programme.getAvgQCA();
-             // Get Average Programme QCA
-             // Implement functionality here
                 break;
             case "8":
-                // View All Department Programmes
-                // Implement functionality here
+                	ExamBoardMenu menu = new ExamBoardMenu();
+                    menu.run();
+
                 break;
             case "9":
                 break;

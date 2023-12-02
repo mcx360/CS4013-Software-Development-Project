@@ -3,13 +3,28 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The ModuleCSVReader class reads module data from a CSV file and creates Module objects.
+ * It provides a method to read modules from a CSV file and store them in an ArrayList.
+ */
 public class ModuleCSVReader {
+
     private ArrayList<Module> modules;
 
+    /**
+     * Constructs a new ModuleCSVReader with an empty ArrayList to store modules.
+     */
     public ModuleCSVReader() {
         this.modules = new ArrayList<>();
     }
 
+    /**
+     * Reads module data from a CSV file and creates Module objects.
+     *
+     * @param filePath  The path to the CSV file containing module data.
+     * @param programme The associated programme to which the modules belong.
+     * @return An ArrayList containing Module objects created from the CSV file.
+     */
     public ArrayList<Module> readModulesFromCSV(String filePath, Programme programme) {
         try {
             File file = new File(filePath);
@@ -43,9 +58,12 @@ public class ModuleCSVReader {
         return modules;
     }
 
+    /**
+     * Gets the ArrayList of modules read from the CSV file.
+     *
+     * @return An ArrayList containing Module objects.
+     */
     public ArrayList<Module> getModules() {
         return modules;
     }
 }
-
-
