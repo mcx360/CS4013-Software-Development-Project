@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * The `StudentCSVReader` class reads student information from a CSV file and populates a HashMap with student IDs
@@ -71,15 +72,22 @@ public class StudentCSVReader {
                     throw new IllegalArgumentException("Programme not found: " + programmeName);
                 }
 
-                // Create a new Student object and add it to the associated academic program
                 Student student = new Student(name, email, programme, year, semester);
-                programme.addStudentToProgram(student);
+                programme.addStudentToProgram(student); // Add student to the program
 
-                // Populate the student ID map
-                studentIDMap.put(studentID, student);
+                // Retrieve the modules for the student's year and semester
+                List<Module> modules = programme.getModules(year, semester);
+
+                // Add the student to each module for their year and semester
+                for (Module module : modules) {
+                    module.addStudentToModule(student);
+                }
+
+                studentIDMap.put(studentID, student); // Populate the student ID map
             }
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
     }
+
 }
