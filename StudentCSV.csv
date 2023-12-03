@@ -1,20 +1,20 @@
-Name                 Email                             Semester    Year    Programme
-John Doe             21000123@studentmail.ul.ie        1           2       Computer Science
-Jane Smith           22000234@studentmail.ul.ie        1           2       Computer Science
-Alice Johnson        23000345@studentmail.ul.ie        1           2       Computer Science
-Bob Williams         22000456@studentmail.ul.ie        1           2       Computer Science
-Emma Brown           21000567@studentmail.ul.ie        1           2       Computer Science
-Michael Davis        23000678@studentmail.ul.ie        1           2       Computer Science
-Olivia Wilson        22000789@studentmail.ul.ie        1           2       Computer Science
-William Garcia       21000890@studentmail.ul.ie        1           2       Computer Science
-Sophia Martinez      23000901@studentmail.ul.ie        1           2       Computer Science
-Liam Anderson        22001012@studentmail.ul.ie        1           2       Computer Science
-Charlotte Taylor     23001123@studentmail.ul.ie        1           2       Computer Science
-Ethan Thomas         21001234@studentmail.ul.ie        1           2       Computer Science
-Ava Hernandez        22001345@studentmail.ul.ie        1           2       Computer Science
-Mia Moore            23001456@studentmail.ul.ie        1           2       Computer Science
-Noah Clark           21001567@studentmail.ul.ie        1           2       Computer Science
-Evelyn Rodriguez     23001678@studentmail.ul.ie        1           2       Computer Science
-James Lee            22001789@studentmail.ul.ie        1           2       Computer Science
-Harper Lewis         21001890@studentmail.ul.ie        1           2       Computer Science
-Benjamin Walker      23001901@studentmail.ul.ie        1           2       Computer Science
+Name,Email,Semester,Year,Programme
+John Doe,21000123@studentmail.ul.ie,1,2,Computer Science
+Jane Smith,22000234@studentmail.ul.ie,1,2,Computer Science
+Alice Johnson,23000345@studentmail.ul.ie,1,2,Computer Science
+Bob Williams,22000456@studentmail.ul.ie,1,2,Computer Science
+Emma Brown,21000567@studentmail.ul.ie,1,2,Computer Science
+Michael Davis,23000678@studentmail.ul.ie,1,2,Computer Science
+Olivia Wilson,22000789@studentmail.ul.ie,1,2,Computer Science
+William Garcia,21000890@studentmail.ul.ie,1,2,Computer Science
+Sophia Martinez,23000901@studentmail.ul.ie,1,2,Computer Science
+Liam Anderson,22001012@studentmail.ul.ie,1,2,Computer Science
+Charlotte Taylor,23001123@studentmail.ul.ie,1,2,Computer Science
+Ethan Thomas,21001234@studentmail.ul.ie,1,2,Computer Science
+Ava Hernandez,22001345@studentmail.ul.ie,1,2,Computer Science
+Mia Moore,23001456@studentmail.ul.ie,1,2,Computer Science
+Noah Clark,21001567@studentmail.ul.ie,1,2,Computer Science
+Evelyn Rodriguez,23001678@studentmail.ul.ie,1,2,Computer Science
+James Lee,22001789@studentmail.ul.ie,1,2,Computer Science
+Harper Lewis,21001890@studentmail.ul.ie,1,2,Computer Science
+Benjamin Walker,23001901@studentmail.ul.ie,1,2,Computer Science
