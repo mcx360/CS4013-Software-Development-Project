@@ -1,13 +1,14 @@
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.ArrayList;
 import ExamBoard.ExamBoardMenu;
 
 public class ProgramInterface {
     private Scanner scanner;
-    ProgrammeList listOfProgrammes = new ProgrammeList();
     private FacultyList facultyList = new FacultyList(); 
+    ExamBoardMenu menu = new ExamBoardMenu();
                              
     public ProgramInterface() {
         scanner = new Scanner(System.in);
@@ -52,6 +53,7 @@ public class ProgramInterface {
     private void studentOptions() {
         System.out.println("Enter Student Id:");
         int studentId = scanner.nextInt();
+        scanner.nextLine();
         try{
         System.out.println("Student Options:");
         System.out.println("1. View Transcript (Own)");
@@ -66,9 +68,10 @@ public class ProgramInterface {
             String studentName = scanner.nextLine();
             System.out.println("Enter the student's programme: ");
             String programmename = scanner.nextLine();
-            ProgrammeList programmelist = new ProgrammeList();
-           Student student =  programmelist.findProgrammeByName(programmename).findStudentByName(studentName);
-           student.viewTranscript();
+            //ProgrammeList programmelist = new ProgrammeList();
+            Student student = facultyList.programmeList.findProgrammeByName(programmename).findStudentByName(studentName);
+            String a = student.viewTranscript();
+            System.out.println(a);
               //View transcript (own)
                 break;
             case "2":
@@ -76,10 +79,14 @@ public class ProgramInterface {
             String newstudentname = scanner.nextLine();
             System.out.println("Enter the student's programme: ");
             String programme = scanner.nextLine();
-            ProgrammeList newprogrammelist = new ProgrammeList();
-            Student studenttoGet = newprogrammelist.findProgrammeByName(programme).findStudentByName(newstudentname);
+            //ProgrammeList newprogrammelist = new ProgrammeList();
+            Student studenttoGet = facultyList.programmeList.findProgrammeByName(programme).findStudentByName(newstudentname);
             Progression progressionstatus = new Progression(studenttoGet);
-            progressionstatus.getGraduationStatus();
+            if (progressionstatus.getGraduationStatus() == true) {
+            	System.out.println("Student is eligible to graduate");
+            } else {
+            	System.out.println("Student is not eligible to graduate");
+            }
                 break;
             case "3":
                 break;
@@ -108,56 +115,63 @@ public class ProgramInterface {
 
         String facultyChoice = scanner.nextLine();
 
+        try {
         switch (facultyChoice) {
             case "1":
-                System.out.println("Enter programme name of the student:");
+                System.out.println("Enter programme name:");
                 String programmeName = scanner.nextLine();
                 System.out.println("Enter module code:");
                 String moduleCode = scanner.nextLine();
                 System.out.println("Enter student id:");
                 int studentId = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter student grade as a percentage:");
                 Double grade = scanner.nextDouble();
+                scanner.nextLine();
 
-                Student student = listOfProgrammes.findProgrammeByName(programmeName).getModule(moduleCode).getStudentById(studentId);
+                Programme programmeofStudent = facultyList.programmeList.findProgrammeByName(programmeName);
+                Student student = programmeofStudent.getModule(moduleCode).getStudentById(studentId);
                 
-                listOfProgrammes.findProgrammeByName(programmeName).getModule(moduleCode).setStudentGrade(student, grade);
+                facultyList.programmeList.findProgrammeByName(programmeName).getModule(moduleCode).setStudentGrade(student, grade);
+                System.out.println("Student grade set");
                 break;
             case "2":
-                System.out.println("Enter programme name of the module:");
+                System.out.println("Enter programme name: ");
                 String programmeNAme = scanner.nextLine();
-                System.out.println("Enter module code:");
+                System.out.println("Enter module code: ");
                 String moduleCOde = scanner.nextLine();
-                System.out.println("Students in module:");
-                ArrayList<Student> studentsInModule = listOfProgrammes.findProgrammeByName(programmeNAme).getModule(moduleCOde).getStudentsInModule();
+                System.out.println("Students in module: ");
+                
+                Programme programmeOfStudent = facultyList.programmeList.findProgrammeByName(programmeNAme);
+                ArrayList<Student> studentsInModule = programmeOfStudent.getModule(moduleCOde).getStudentsInModule();
+                
                 System.out.println("  Student name:     StudentId:");
                 for(int i=0;i<studentsInModule.size();i++){
                     System.out.println(i+1+"."+studentsInModule.get(i).getName()+"\t"+studentsInModule.get(i).getID());
                 }
                 break;
             case "3":
-                boolean graduated=false;
-                System.out.println("Enter student iD to check their graduability status:");
+                System.out.println("Enter student iD: ");
                 int id = scanner.nextInt();
-                System.out.println("Enter name of programme student is enrolled in:");
+                scanner.nextLine();
+                System.out.println("Enter name of programme student is enrolled in: ");
                 String NameOfTheProgramme = scanner.nextLine();
                 ArrayList<Student> studentsInProgramme = new ArrayList<>();
-                studentsInProgramme= listOfProgrammes.findProgrammeByName(NameOfTheProgramme).getStudents();
+                studentsInProgramme= facultyList.programmeList.findProgrammeByName(NameOfTheProgramme).getStudents();
                 for(int i=0;i<studentsInProgramme.size();i++){
                     if(studentsInProgramme.get(i).getID()== id){
                         Progression progress = new Progression(studentsInProgramme.get(i));
-                        graduated = progress.getGraduationStatus();
-
+                        System.out.println("Student has " + progress.progressStudent()); 
                     }
                 }
-                System.out.println("graduated:" +graduated);
                 break;
             case "4":
-                System.out.println("Enter id of student which you want to see the transcript off:");
+                System.out.println("Enter id of student which you want to see the transcript of: ");
                 int idOfStudent = scanner.nextInt();
-                System.out.println("Enter the programme in which the student is enrolled in:");
+                scanner.nextLine();
+                System.out.println("Enter the programme in which the student is enrolled in: ");
                 String PROGRAMME = scanner.nextLine();
-                ArrayList<Student> listOfStudents = listOfProgrammes.findProgrammeByName(PROGRAMME).getStudents();
+                ArrayList<Student> listOfStudents = facultyList.programmeList.findProgrammeByName(PROGRAMME).getStudents();
                 for(int i=0;i<listOfStudents.size();i++){
                     if(listOfStudents.get(i).getID()==idOfStudent){
                         System.out.println(listOfStudents.get(i).viewTranscript());
@@ -166,43 +180,36 @@ public class ProgramInterface {
                 break;
             case "5":
             Module moduleToGet;
-            System.out.println("Enter the module for which you need the average for: ");
+            System.out.println("Enter the module code for which you need the average for: ");
             String moduleNameToGet = scanner.nextLine();
             System.out.println("Enter the programme which this module comes under: ");
             String programmeNameToGet = scanner.nextLine();
-            System.out.println("Enter the year in which this module taught: ");
-            int yearToGet = scanner.nextInt();
-            System.out.println("Enter the semester in which this module is taught: ");
-            int semToGet = scanner.nextInt();
-            ProgrammeList programmeListToGet = new ProgrammeList();
-            Programme programmeToGet = programmeListToGet.findProgrammeByName(programmeNameToGet);
-            for(int b=0;b<programmeToGet.getModules(yearToGet,semToGet).size();b++){
-                if (programmeToGet.getModules(yearToGet,semToGet).get(b).getModuleName().equals(moduleNameToGet)){
-                    moduleToGet = programmeToGet.getModules(yearToGet,semToGet).get(b);
-                    moduleToGet.getMouduleAvg();
-                }
-            }
+
+            //ProgrammeList programmeListToGet = new ProgrammeList();
+            Programme programmeToGet = facultyList.programmeList.findProgrammeByName(programmeNameToGet);
+            Module module = programmeToGet.getModule(moduleNameToGet);
+            System.out.println("The avaerage QCA is: " + module.getMouduleAvg());
                 break;
             case "6":
             System.out.println("Enter the department name: ");
             String departmentName = scanner.nextLine();
             System.out.println("Enter the faculty it comes under: ");
             String facultyName = scanner.nextLine();
-            FacultyList listOfFaculty = new FacultyList();
-            Department departmentToGet = listOfFaculty.findFacultyByName(facultyName).findDepartmentByName(departmentName);
-            departmentToGet.departmentProgrammesToString();
+            //FacultyList listOfFaculty = new FacultyList();
+            Department departmentToGet = facultyList.findFacultyByName(facultyName).findDepartmentByName(departmentName);
+            System.out.println(departmentToGet.departmentProgrammesToString()); 
             // View All Department Programmes
             // Implement functionality here
             break;
             case "7":
             System.out.println("Enter the Programme name: ");
             String nameOfTheProgramme = scanner.nextLine();
-            ProgrammeList listOfTheProgrammes = new ProgrammeList();
-            Programme programme = listOfTheProgrammes.findProgrammeByName(nameOfTheProgramme);
-            programme.getAvgQCA();
+            //ProgrammeList listOfTheProgrammes = new ProgrammeList();
+            Programme programme = facultyList.programmeList.findProgrammeByName(nameOfTheProgramme);
+            System.out.println("The average QCA is: " + programme.getAvgQCA()); 
                 break;
             case "8":
-                	ExamBoardMenu menu = new ExamBoardMenu();
+                	//ExamBoardMenu menu = new ExamBoardMenu();
                     menu.run();
 
                 break;
@@ -211,6 +218,9 @@ public class ProgramInterface {
             default:
                 System.out.println("Invalid option for faculty.");
                 break;
+        }
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 
@@ -226,6 +236,7 @@ public class ProgramInterface {
 
         String uploadChoice = scanner.nextLine();
 
+        try {
         switch (uploadChoice) {
             case "1":
             System.out.println("Enter CSV file path:");
@@ -245,12 +256,15 @@ public class ProgramInterface {
                 String moduleCode = scanner.nextLine();
                 System.out.println("Enter module credits: ");
                 int moduleCredits = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter professor name: ");
                 String professorName = scanner.nextLine();
                 System.out.println("Which year is this module taken at: ");
                 int year = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Which semester is this module taken at: ");
                 int semester = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Which programme does this module belong to: ");
                 String programmeName = scanner.nextLine();
 
@@ -268,6 +282,7 @@ public class ProgramInterface {
                 String programmeNameToAdd = scanner.nextLine();
                 System.out.println("Enter programme duration: ");
                 int duration = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter Programme level:");
                 int programmeLevel = scanner.nextInt();
                 scanner.nextLine();
@@ -297,12 +312,30 @@ public class ProgramInterface {
                 String programmeNameOfStudent = scanner.nextLine();
                 System.out.println("Enter year student is currently in: ");
                 int yearOfStudent = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Enter semester student is currently in: ");
-                int semesterOfStudent = scanner.nextInt();    
+                int semesterOfStudent = scanner.nextInt();   
+                scanner.nextLine();
 
                 Programme programmeOfStudent = facultyList.programmeList.findProgrammeByName(programmeNameOfStudent);
                 Student student = new Student(studentName, studentEmail, programmeOfStudent, yearOfStudent, semesterOfStudent);
                 programmeOfStudent.addStudentToProgram(student);
+                
+                for (Map.Entry<Map.Entry<Integer, Integer>, ArrayList<Module>> entry : programmeOfStudent.moduleMap.entrySet()) {
+                    Map.Entry<Integer, Integer> moduleKey = entry.getKey();
+                    int moduleYear = moduleKey.getKey();
+                    int moduleSemester = moduleKey.getValue();
+
+                    if (student.getYear() == moduleYear && student.getSemester() == moduleSemester) {
+                        ArrayList<Module> modules = entry.getValue();
+                        
+                        // Iterate through each module in this specific year and semester
+                        for (Module moduleAdd : modules) {
+                            moduleAdd.addStudentToModule(student);
+                        }
+                    }
+                }
+
 
                 System.out.println("Student successfully created");
                 break;
@@ -350,6 +383,9 @@ public class ProgramInterface {
                 System.out.println("Invalid option for upload.");
                 break;
         }
+    } catch (Exception e) {
+        System.out.println("An error occurred: " + e.getMessage());
+    }
     }
 
     private void removeOptions() {
@@ -359,11 +395,11 @@ public class ProgramInterface {
         System.out.println("3. Remove Student from Programme");
         System.out.println("4. Remove Programme");
         System.out.println("5. Remove Department");
-        System.out.println("6. Remove Faculty");
-        System.out.println("7. Back");
+        System.out.println("6. Back");
 
         String removeChoice = scanner.nextLine();
 
+        try {
         switch (removeChoice) {
             case "1":
                    // Remove Student from Module
@@ -372,18 +408,21 @@ public class ProgramInterface {
                 String programmeName = scanner.nextLine();
                 System.out.println("Type in year when module takes place in program");
                 int year = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Type in semester in which program took place:");
                 int sem = scanner.nextInt();
+                scanner.nextLine();
                 System.out.println("Type the module code:");
                 String moduleCode = scanner.nextLine();
                 System.out.println("Enter student id of student to be removed from the module:");
                 int studentId = scanner.nextInt();
-                ProgrammeList myProgrammeList = new ProgrammeList();
-                List<Module> modulesInSem = myProgrammeList.findProgrammeByName(programmeName).getModules(year,sem);
+                scanner.nextLine();
+                //ProgrammeList myProgrammeList = new ProgrammeList();
+                List<Module> modulesInSem = facultyList.programmeList.findProgrammeByName(programmeName).getModules(year,sem);
                 for(int i=0;i<modulesInSem.size();i++){
                     if(modulesInSem.get(i).getModuleCode().equals(moduleCode)){
 
-                        myProgrammeList.findProgrammeByName(programmeName).removeModule(year, sem, modulesInSem.get(i));
+                        facultyList.programmeList.findProgrammeByName(programmeName).removeModule(year, sem, modulesInSem.get(i));
                     }
                 }
                 break;
@@ -392,17 +431,19 @@ public class ProgramInterface {
             String nameOfprogramme = scanner.nextLine();
             System.out.println("Enter the year when module takes place in the programme: ");
             int yearOfmodule = scanner.nextInt();
+            scanner.nextLine();
             System.out.println("Enter the semester in which the module takes place: ");
             int semesterOfmodule =  scanner.nextInt();
+            scanner.nextLine();
             System.out.println("Enter the module code: ");
             String codeOfmodule  = scanner.nextLine();
 
-            ProgrammeList newprogrammeList = new ProgrammeList();
-            List<Module> modulesinSEMESTER = newprogrammeList.findProgrammeByName(nameOfprogramme).getModules(yearOfmodule,semesterOfmodule);
+            //ProgrammeList newprogrammeList = new ProgrammeList();
+            List<Module> modulesinSEMESTER = facultyList.programmeList.findProgrammeByName(nameOfprogramme).getModules(yearOfmodule,semesterOfmodule);
 
             for(int s=0;s<modulesinSEMESTER.size();s++){
                 if(modulesinSEMESTER.get(s).getModuleCode().equals(codeOfmodule));
-                newprogrammeList.findProgrammeByName(nameOfprogramme).removeModule(yearOfmodule, semesterOfmodule,modulesinSEMESTER.get(s) );
+                facultyList.programmeList.findProgrammeByName(nameOfprogramme).removeModule(yearOfmodule, semesterOfmodule,modulesinSEMESTER.get(s) );
             }
                 // Remove Module
                 // Implement functionality here
@@ -412,26 +453,25 @@ public class ProgramInterface {
             String studentName = scanner.nextLine();
             System.out.println("Enter the programme from which this student should be removed: ");
             String newProgrammeName = scanner.nextLine();
-            ProgrammeList listOfTheprogrammes = new ProgrammeList();
+            //ProgrammeList listOfTheprogrammes = new ProgrammeList();
 
-            FacultyList facultyList = FacultyList.getInstance(); // assuming you have this instance in your class
+            //FacultyList facultyList = FacultyList.getInstance(); // assuming you have this instance in your class
 
-            ProgrammeList listOfProgrammes = facultyList.programmeList;
-            Programme programOfStudent = listOfProgrammes.findProgrammeByName(newProgrammeName);
+            //ProgrammeList listOfProgrammes = facultyList.programmeList;
+            Programme programOfStudent = facultyList.programmeList.findProgrammeByName(newProgrammeName);
 
             // Check if the program is found before attempting to find the student
             Student studentToBeRemoved = programOfStudent.findStudentByName(studentName);
 
-            listOfTheprogrammes.findProgrammeByName(newProgrammeName).removeStudentFromProgram(studentToBeRemoved);
+            facultyList.programmeList.findProgrammeByName(newProgrammeName).removeStudentFromProgram(studentToBeRemoved);
                // Remove Student from Programme
                // Implement functionality here
                 break;
             case "4":
             System.out.println("Enter programme name: ");
             String programmeToBeRemoved = scanner.nextLine();
-            ProgrammeList listOfprogrammes = new ProgrammeList();
-            Programme removalProgram = listOfprogrammes.findProgrammeByName(programmeToBeRemoved);
-            listOfprogrammes.removeProgramme(removalProgram);
+            Programme removalProgram = facultyList.programmeList.findProgrammeByName(programmeToBeRemoved);
+            facultyList.programmeList.removeProgramme(removalProgram);
                 // Remove Programme
                 // Implement functionality here
                 break;
@@ -440,8 +480,8 @@ public class ProgramInterface {
             String facultyName = scanner.nextLine();
             System.out.println("Enter the name of department to be removed: ");
             String nameOfDepartment = scanner.nextLine();
-            FacultyList listOffaculties = new FacultyList();
-            Faculty nameOffaculty = listOffaculties.findFacultyByName(facultyName);
+            //FacultyList listOffaculties = new FacultyList();
+            Faculty nameOffaculty = facultyList.findFacultyByName(facultyName);
             Department department = nameOffaculty.findDepartmentByName(nameOfDepartment) ;
             nameOffaculty.deleteDepartment(department);
 
@@ -452,20 +492,13 @@ public class ProgramInterface {
                 // Implement functionality here
                 break;
             case "6":
-            System.out.println("Enter name of the faculty to be removed: ");
-            String NameOfFaculty = scanner.nextLine();
-            FacultyList newListOfFaculties = new FacultyList();
-            Faculty facultyTobeRemoved = newListOfFaculties.findFacultyByName(NameOfFaculty);
-            newListOfFaculties.removeFaculty(facultyTobeRemoved);
-
-                // Remove Faculty
-                // Implement functionality here
-                break;
-            case "7":
                 break;
             default:
                 System.out.println("Invalid option for remove.");
                 break;
+        }
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 
