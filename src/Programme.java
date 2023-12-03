@@ -15,7 +15,7 @@ public class Programme {
     private int ProgrammeLevel;
     private int ProgrammeID;
     private ArrayList<Student> Students;
-    private Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap;
+    protected Map<Map.Entry<Integer, Integer>, ArrayList<Module>> moduleMap;
     private Department department;
 
     /**
@@ -56,10 +56,11 @@ public class Programme {
      * @return The module with the specified code, or null if not found.
      */
     public Module getModule(String moduleCode) {
-        List<Module> allModules = getModules();
-        for (int i = 0; i < allModules.size(); i++) {
-            if (allModules.get(i).getModuleCode().equals(moduleCode)) {
-                return allModules.get(i);
+        for (ArrayList<Module> modules : moduleMap.values()) {
+            for (Module module : modules) {
+                if (module.getModuleCode().equals(moduleCode)) {
+                    return module;
+                }
             }
         }
         return null;
@@ -106,8 +107,7 @@ public class Programme {
      */
     public void addModule(int year, int semester, Module module) {
         Map.Entry<Integer, Integer> key = Map.entry(year, semester);
-        this.moduleMap.put(key, new ArrayList<>());
-        this.moduleMap.get(key).add(module);
+        this.moduleMap.computeIfAbsent(key, k -> new ArrayList<>()).add(module);
     }
 
     /**
