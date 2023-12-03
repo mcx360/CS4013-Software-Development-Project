@@ -35,7 +35,7 @@ public class Module{
         this.moduleName =moduleName;
         this.moduleCode = moduleCode;
         this.credits = credits;
-        this.studentsInModule = programme.getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
+        this.studentsInModule = new ArrayList<Student>(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
         this.moduleGradingSystem = new GradingSystem();
         this.professor = professor;
         this.year=splitInteger(moduleMapCode)[0];
@@ -57,7 +57,7 @@ public class Module{
     public Module(String moduleName,String moduleCode,int credits,Programme programme,String professor, int year, int semester){
         this.moduleCode = moduleCode;
         this.credits = credits;
-        this.studentsInModule = programme.getStudents(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
+        this.studentsInModule = new ArrayList<Student>(); //By default each student in the programme is added to the module, incase a student has to be removed or a student from another programme needs to be added there are mutator methods provided
         this.moduleGradingSystem = new GradingSystem();
         this.professor = professor;
         this.year = year;
@@ -86,11 +86,8 @@ public class Module{
      * @param student The student to be added.
      */
     //In the event we want to add someone outside the programme to the module, we do it using this method
-    public void addStudentToModule(Student student){
-        for(int i=0;i<studentsInModule.size();i++){
-            if(studentsInModule.get(i).equals(student)){
-                return;
-            }
+    public void addStudentToModule(Student student) {
+        if (!studentsInModule.contains(student)) {
             studentsInModule.add(student);
         }
     }
