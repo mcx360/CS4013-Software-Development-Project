@@ -7,7 +7,7 @@ import java.util.List;
  */
 class FacultyList {
 
-    private static FacultyList instance = null;
+    //private static FacultyList instance = null;
     private List<Faculty> faculties;
     protected ProgrammeList programmeList;
 
@@ -36,12 +36,12 @@ class FacultyList {
      *
      * @return The singleton instance of the FacultyList.
      */
-    public static FacultyList getInstance() {
-        if (instance == null) {
-            instance = new FacultyList();
-        }
-        return instance;
-    }
+    /**public static FacultyList getInstance() {
+       * if (instance == null) {
+        *    instance = new FacultyList();
+        *}
+        *return instance;
+    }*/
 
     /**
      * Gets the list of faculties in the FacultyList.
