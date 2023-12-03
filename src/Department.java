@@ -121,12 +121,13 @@ public class Department{
      * @return returns the departments programmes as a String
      */
     public String departmentProgrammesToString(){
-        String Programmes = "";
-        for(int i=0;i<departmentProgrammes.size();i++){
-            Programmes+=i+1+"."+departmentProgrammes.get(i)+"\n";
+        StringBuilder Programmes = new StringBuilder();
+        for(int i = 0; i < departmentProgrammes.size(); i++){
+            Programmes.append(i + 1).append(".").append(departmentProgrammes.get(i).getProgrammeName()).append("\n");
         }
-        return Programmes;
+        return Programmes.toString();
     }
+
 
     /**
      * 
