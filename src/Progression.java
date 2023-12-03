@@ -52,13 +52,23 @@ public class Progression {
      * Progresses the student to the next academic level if the average QCA is greater than or equal to 2.00.
      * If the student is in the second semester, it increments the year; otherwise, it sets the semester to 2.
      */
-    public void progressStudent() {
-        if (student.calculateTotalAverageQCA(student) >= 2.00) {
-            if (student.getSemester() == 2) {
+    public String progressStudent() {
+        if (student.getSemester() == 2) {
+            if (student.calculateTotalAverageQCA(student) < 2.00) {
+                return "failed";
+            } else {
                 student.setYear(student.getYear() + 1);
+                return "progressed to next year";
+            }
+        } else {
+            if (student.calculateTotalAverageQCA(student) < 2.00) {
+                return "failed";
             } else {
                 student.setSemester(2);
+                return "progressed to next semester";
             }
         }
     }
 }
+
+
