@@ -422,7 +422,7 @@ public class ProgramInterface {
                 for(int i=0;i<modulesInSem.size();i++){
                     if(modulesInSem.get(i).getModuleCode().equals(moduleCode)){
 
-                        facultyList.programmeList.findProgrammeByName(programmeName).removeModule(year, sem, modulesInSem.get(i));
+                        facultyList.programmeList.findProgrammeByName(programmeName).getModule(moduleCode).removeStudentFromModule(studentId);
                     }
                 }
                 break;
