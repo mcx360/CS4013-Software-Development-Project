@@ -288,32 +288,35 @@ public class Student extends Person implements Comparable<Student> {
         for (int year = 1; year <= getYear(); year++) {
             for (int sem = 1; sem <= 2; sem++) {
                 if ((year < getYear()) || (year == getYear() && sem <= getSemester())) {
-                    transcript.append("\n").append("+----------------------+-------------------+\n")
+                    transcript.append("\n").append("+----------------------+----------+\n")
                             .append("| Year: ").append(year).append("     Semester: ").append(sem).append("       |\n")
-                            .append("+----------------------+-------------------+\n")
-                            .append("| Module Code          | Grade   |  QCA    |\n");
+                            .append("+----------------------+----------+\n")
+                            .append("| Module Code          | Grade    |\n");
 
                     List<Module> modules = programme.getModules(year, sem);
                     for (Module module : modules) {
                         String grade = module.getStudentGrade(this);
                         if (grade != null) {
-                            double qca = calculateQCAForSemester(this, year, sem);
                             transcript.append("| - ").append(module.getModuleCode()) 
-                                    .append("   | ").append(grade).append("      | ").append(String.format("%.2f", qca)).append("  |\n");
+                                    .append("   | ").append(grade).append("      |")
+                                    .append(module.getStudentGradeDouble(grade))
+                                    .append("\n");
                         }
                     }
+
                     double semesterQCA = calculateQCAForSemester(this, year, sem);
-                    transcript.append("+----------------------+-------------------+\n")
+                    transcript.append("+----------------------+----------+\n")
                             .append("| Semester QCA: ").append(String.format("%.2f", semesterQCA)).append("       |\n")
-                            .append("+----------------------+-------------------+\n");
+                            .append("+----------------------+----------+\n");
 
                     totalQCA += semesterQCA; // Accumulate total QCA for all semesters
                 }
             }
         }
 
-        // Append total QCA for all completed semesters
+        // Display total QCA for all completed semesters
         transcript.append("\nTotal QCA: ").append(String.format("%.2f", totalQCA)).append("\n");
         return transcript.toString();
     }
+
 }
